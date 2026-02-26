@@ -1,130 +1,215 @@
 # 🧬 MyGenome  
-De novo genome assembly and quality assessment workflow.
+Whole-Genome Assembly of *Pyricularia oryzae* Isolate Bm88511
 
-This repository documents the step-by-step process used to assemble and evaluate a genome from raw sequencing reads.
+This repository documents the complete genome assembly workflow performed for isolate **Bm88511** using Illumina paired-end sequencing data.
 
 ---
 
 # 📚 Table of Contents
 
 1. [Project Overview](#project-overview)  
-2. [Data Organization](#data-organization)  
-3. [Assess Sequence Quality](#assess-sequence-quality)  
-4. [Trim Reads](#trim-reads)  
+2. [Sample Information](#sample-information)  
+3. [Raw Data Information](#raw-data-information)  
+4. [FastQC Analysis](#fastqc-analysis)  
 5. [Genome Assembly](#genome-assembly)  
-6. [Assembly Evaluation](#assembly-evaluation)  
-7. [Software Versions](#software-versions)
+6. [Assembly Results](#assembly-results)  
+7. [Software Versions](#software-versions)  
+
+---
 
 ---
 
 # Project Overview
 
-- **Organism:** Insert organism name  
-- **Sequencing Platform:** Illumina paired-end  
-- **Assembly Tool:** SPAdes  
-- **Objective:** Generate a draft genome assembly  
+- **Researcher:** Gabriel Chitolina  
+- **SRA Accession:** SRR37270005  
+- **BioProject:** PRJNA926786  
+- **BioSample:** SAMN55064733  
+- **Organism:** *Pyricularia oryzae*  
+- **Isolate:** Bm88511  
+- **Host:** *Urochloa mutica*  
+- **Collection Location:** Philippines: Nueva Ecija  
+- **Collection Year:** 1988  
+- **Sequencing Platform:** Illumina NovaSeq X  
+- **Library Layout:** Paired-end  
+- **Library Preparation:** Twist Library Preparation EF2.0 with Enzymatic Fragmentation  
+
+**Objective:** Generate a high-quality draft genome assembly from Illumina paired-end reads.
 
 ---
 
-# Data Organization
+---
 
-The repository contains the following directories:
+# Sample Information
 
-- `data/` – raw sequencing reads  
-- `results/` – output files from analyses  
-- `scripts/` – commands or helper scripts  
+- Submission Type: Single BioSample  
+- Sample Type: MIGS Eukaryotic: plant-associated  
+- Environmental Medium: plant leaf  
+- Projected Release Date: 12/31/2026  
 
 ---
 
-# Assess Sequence Quality
+---
 
-## Step 1: Run FastQC
+# Raw Data Information
+
+- Raw reads (single-end): **4,306,107**  
+- Cleaned paired reads used for assembly: **3,638,894**  
+- Total bases (cleaned R1 + R2): **1,087,853,572 bp**  
+- Recommended k-mer: **79**
+
+FASTQ files:
 
 ```
-singularity run --app fastqc /path/to/container.sif \
-fastqc sample_R1.fastq.gz sample_R2.fastq.gz
+Bm88511_1.fq.gz
+Bm88511_2.fq.gz
 ```
 
-**Purpose:**  
-Evaluate raw read quality before trimming.
+---
+
+---
+
+# FastQC Analysis
+
+## 1️⃣ Raw Data Quality Assessment
+
+### Summary of Warning (Orange) and Error (Red) Messages
+
+**Warnings (Orange):**
+- Per sequence GC content  
+- Sequence duplication levels  
+
+**Errors (Red):**
+- Adapter content  
+
+---
+
+### Raw Data FastQC Images
+
+#### 🔹 Read 1 (R1)
+
+**Summary Tab**
+
+![Raw Summary R1](/data/raw_fastqc_summary_1.png)
+
+**Adapter Content Tab**
+
+![Raw Adapter R1](/data/raw_fastqc_adapter_1.png)
+
+---
+
+#### 🔹 Read 2 (R2)
+
+**Summary Tab**
+
+![Raw Summary R2](/data/raw_fastqc_summary_2.png)
+
+**Adapter Content Tab**
+
+![Raw Adapter R2](/data/raw_fastqc_adapter_2.png)
+
+---
+
+## 2️⃣ Trimmed Data Quality Assessment
+
+### Summary of Warning (Orange) and Error (Red) Messages After Trimming
+
+**Warnings (Orange):**
+- Sequence duplication levels  
+
+**Errors (Red):**
+- None detected  
+
+---
+
+### Trimmed Data FastQC Images
+
+#### 🔹 Paired Reads (Used for Assembly)
+
+**Read 1 Paired**
+
+![Trimmed Summary R1 Paired](/data/trimmed_fastqc_summary_1_paired.png)
+
+**Read 2 Paired**
+
+![Trimmed Summary R2 Paired](/data/trimmed_fastqc_summary_2_paired.png)
+
+---
+
+#### 🔹 Unpaired Reads
+
+**Read 1 Unpaired**
+
+![Trimmed Summary R1 Unpaired](/data/trimmed_fastqc_summary_1_unpaired.png)
+
+**Read 2 Unpaired**
+
+![Trimmed Summary R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
 
 ---
 
 <details>
-<summary>Click to expand: FastQC Output Explanation</summary>
+<summary>Click to expand: Interpretation of FastQC Results</summary>
 
-FastQC reports include:
+Raw reads showed adapter contamination and elevated duplication levels, which justified trimming prior to assembly.
 
-- Per base sequence quality  
-- GC content  
-- Adapter contamination  
-- Overrepresented sequences  
-
-These metrics help determine trimming parameters.
+After trimming, adapter contamination was successfully removed and overall quality improved. Remaining warnings were minor and did not prevent assembly.
 
 </details>
 
 ---
-
-# Trim Reads
-
-## Step 2: Remove Adapters and Low-Quality Bases
-
-```
-trimmomatic PE sample_R1.fastq.gz sample_R2.fastq.gz \
-trimmed_R1.fastq.gz unpaired_R1.fastq.gz \
-trimmed_R2.fastq.gz unpaired_R2.fastq.gz \
-ILLUMINACLIP:adapters.fa:2:30:10 SLIDINGWINDOW:4:20 MINLEN:50
-```
-
-**Purpose:**  
-Remove sequencing adapters and low-quality regions.
 
 ---
 
 # Genome Assembly
 
-## Step 3: Run SPAdes
+## Assembly with SPAdes
 
 ```
 spades.py \
--1 trimmed_R1.fastq.gz \
--2 trimmed_R2.fastq.gz \
+-1 clean_R1.fq.gz \
+-2 clean_R2.fq.gz \
+-k 79 \
 -o spades_output
 ```
 
-**Purpose:**  
-Assemble trimmed paired-end reads into contigs.
+Paired-end Illumina reads were assembled using the recommended k-mer size of 79.
 
 ---
 
-<details>
-<summary>Click to expand: Assembly Parameters</summary>
-
-- Default k-mers used  
-- Paired-end mode enabled  
-- No hybrid reads included  
-
-</details>
-
 ---
 
-# Assembly Evaluation
+# Assembly Results
 
-## Step 4: Evaluate Assembly with QUAST
-
-```
-quast.py spades_output/contigs.fasta -o quast_results
-```
-
-### Assembly Metrics
+## Final SPAdes Assembly
 
 | Metric | Value |
 |--------|--------|
-| Total Length | Insert value |
-| N50 | Insert value |
-| Number of Contigs | Insert value |
-| GC Content | Insert value |
+| Genome Size | 41,509,816 bp |
+| Number of Contigs | 6,482 |
+| N50 | 77,767 bp |
+
+---
+
+## Comparison (Step = 10)
+
+| Metric | Value |
+|--------|--------|
+| Genome Size | 41,616,069 bp |
+| Number of Contigs | 9,046 |
+| N50 | 14,242 bp |
+
+---
+
+## Comparison (Step = 2)
+
+| Metric | Value |
+|--------|--------|
+| Genome Size | 41,611,510 bp |
+| Number of Contigs | 9,025 |
+| N50 | 14,187 bp |
+
+---
 
 ---
 
@@ -133,8 +218,22 @@ quast.py spades_output/contigs.fasta -o quast_results
 ```
 spades.py --version
 fastqc --version
-quast.py --version
 singularity --version
+```
+
+---
+
+---
+
+# Repository Structure
+
+```
+MyGenome/
+│
+├── data/
+├── results/
+├── scripts/
+└── README.md
 ```
 
 ---
