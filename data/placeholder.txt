@@ -1,0 +1,1 @@
+This folder stores FastQC images and raw data files.
