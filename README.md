@@ -75,13 +75,6 @@ Bm88511_2.fq.gz
 
 ### Summary of Warning (Orange) and Error (Red) Messages
 
-**Warnings (Orange):**
-- Per sequence GC content  
-- Sequence duplication levels  
-
-**Errors (Red):**
-- Adapter content  
-
 ---
 
 ### Raw Data FastQC Images
@@ -113,12 +106,6 @@ Bm88511_2.fq.gz
 ## 2️⃣ Trimmed Data Quality Assessment
 
 ### Summary of Warning (Orange) and Error (Red) Messages After Trimming
-
-**Warnings (Orange):**
-- Sequence duplication levels  
-
-**Errors (Red):**
-- None detected  
 
 ---
 
