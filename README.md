@@ -13,9 +13,8 @@ This repository documents the complete genome assembly workflow performed for is
 4. [FastQC Analysis](#fastqc-analysis)  
 5. [Genome Assembly](#genome-assembly)  
 6. [Assembly Results](#assembly-results)  
-7. [Software Versions](#software-versions)  
-
----
+7. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
+8. [Software Versions](#software-versions)  
 
 ---
 
@@ -38,16 +37,12 @@ This repository documents the complete genome assembly workflow performed for is
 
 ---
 
----
-
 # Sample Information
 
 - Submission Type: Single BioSample  
 - Sample Type: MIGS Eukaryotic: plant-associated  
 - Environmental Medium: plant leaf  
 - Projected Release Date: 12/31/2026  
-
----
 
 ---
 
@@ -64,8 +59,6 @@ FASTQ files:
 Bm88511_1.fq.gz
 Bm88511_2.fq.gz
 ```
-
----
 
 ---
 
@@ -107,6 +100,8 @@ Bm88511_2.fq.gz
 
 ### Summary of Warning (Orange) and Error (Red) Messages After Trimming
 
+> Note: Reads were first processed using **VelvetOptimizer** to explore assembly quality. SPAdes was compared and ultimately selected because it produced higher-quality assemblies.
+
 ---
 
 ### Trimmed Data FastQC Images
@@ -146,8 +141,6 @@ After trimming, adapter contamination was successfully removed and overall quali
 
 ---
 
----
-
 # Genome Assembly
 
 ## Assembly with SPAdes
@@ -162,7 +155,7 @@ spades.py \
 
 Paired-end Illumina reads were assembled using the recommended k-mer size of 79.
 
----
+> Note: **VelvetOptimizer** was run first to optimize assembly parameters. SPAdes was selected as the final assembler because it produced higher-quality contigs and N50 compared with VelvetOptimizer.
 
 ---
 
@@ -179,6 +172,8 @@ Paired-end Illumina reads were assembled using the recommended k-mer size of 79.
 ---
 
 ## Comparison (Step = 10)
+
+> VelvetOptimizer assemblies were also generated and compared; SPAdes gave better quality metrics.
 
 | Metric | Value |
 |--------|--------|
@@ -198,6 +193,36 @@ Paired-end Illumina reads were assembled using the recommended k-mer size of 79.
 
 ---
 
+# Genome Visualization with Bandage
+
+The final SPAdes assembly was visualized using **Bandage**. Screenshots were generated for:
+
+1. The **whole assembly graph**  
+2. A **single contig of interest** (node 119964) with scope = 4  
+
+---
+
+### Whole Assembly Graph
+
+![Whole Assembly Graph](/data/Bm88511_graph_spades.jpg)
+
+---
+
+### Single Contig + Scope = 4 (Node 119964)
+
+![Single Contig Node 119964](/data/Bm88511_graph_spades_node119964_4.jpg)
+
+---
+
+<details>
+<summary>Click to expand: Interpretation</summary>
+
+- The **whole assembly graph** shows connectivity and contig structure.  
+- The **single contig graph** highlights node 119964 in detail, showing local connections.  
+- These visualizations confirm contiguity and help detect possible assembly breaks or repeats.
+
+</details>
+
 ---
 
 # Software Versions
@@ -207,8 +232,6 @@ spades.py --version
 fastqc --version
 singularity --version
 ```
-
----
 
 ---
 
