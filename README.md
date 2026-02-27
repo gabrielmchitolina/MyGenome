@@ -8,13 +8,14 @@ This repository documents the complete genome assembly workflow performed for is
 # 📚 Table of Contents
 
 1. [Project Overview](#project-overview)  
-2. [Sample Information](#sample-information)  
-3. [Raw Data Information](#raw-data-information)  
-4. [FastQC Analysis](#fastqc-analysis)  
-5. [Genome Assembly](#genome-assembly)  
-6. [Assembly Results](#assembly-results)  
+2. [Raw Data Information](#raw-data-information)  
+3. [Quality Control (FastQC)](#quality-control-fastqc)  
+4. [Genome Assembly with Velvet](#genome-assembly-with-velvet)  
+5. [Genome Assembly with SPAdes](#genome-assembly-with-spades)  
+6. [Assembly Comparison](#assembly-comparison)  
 7. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
 8. [Software Versions](#software-versions)  
+9. [Repository Structure](#repository-structure)  
 
 ---
 
@@ -31,18 +32,12 @@ This repository documents the complete genome assembly workflow performed for is
 - **Collection Year:** 1988  
 - **Sequencing Platform:** Illumina NovaSeq X  
 - **Library Layout:** Paired-end  
-- **Library Preparation:** Twist Library Preparation EF2.0 with Enzymatic Fragmentation  
+- **Library Preparation:** Twist Library Preparation EF2.0  
 
-**Objective:** Generate a high-quality draft genome assembly from Illumina paired-end reads.
+**VM username:** gde267@gde267.cs.uky.edu  
+**MCC username:** gde267@mcc.uky.edu  
 
----
-
-# Sample Information
-
-- Submission Type: Single BioSample  
-- Sample Type: MIGS Eukaryotic: plant-associated  
-- Environmental Medium: plant leaf  
-- Projected Release Date: 12/31/2026  
+**Objective:** Generate and optimize a high-quality draft genome assembly.
 
 ---
 
@@ -51,7 +46,7 @@ This repository documents the complete genome assembly workflow performed for is
 - Raw reads (single-end): **4,306,107**  
 - Cleaned paired reads used for assembly: **3,638,894**  
 - Total bases (cleaned R1 + R2): **1,087,853,572 bp**  
-- Recommended k-mer: **79**
+- Estimated genome size: **~40 Mb**
 
 FASTQ files:
 
@@ -62,106 +57,105 @@ Bm88511_2.fq.gz
 
 ---
 
-# FastQC Analysis
+# Quality Control (FastQC)
 
-## 1️⃣ Raw Data Quality Assessment
+## 1️⃣ Raw Data
 
 ### Summary of Warning (Orange) and Error (Red) Messages
 
+Raw reads showed:
+- Adapter contamination
+- Elevated duplication levels
+- Minor per-base sequence quality warnings
+
 ---
 
-### Raw Data FastQC Images
+### Raw Data Images
 
-#### 🔹 Read 1 (R1)
+#### Read 1
 
-**Summary Tab**
-
-![Raw Summary R1](/data/raw_fastqc_summary_1.png)
-
-**Adapter Content Tab**
-
+![Raw Summary R1](/data/raw_fastqc_summary_1.png)  
 ![Raw Adapter R1](/data/raw_fastqc_adapter_1.png)
 
----
+#### Read 2
 
-#### 🔹 Read 2 (R2)
-
-**Summary Tab**
-
-![Raw Summary R2](/data/raw_fastqc_summary_2.png)
-
-**Adapter Content Tab**
-
+![Raw Summary R2](/data/raw_fastqc_summary_2.png)  
 ![Raw Adapter R2](/data/raw_fastqc_adapter_2.png)
 
 ---
 
-## 2️⃣ Trimmed Data Quality Assessment
+## 2️⃣ Trimmed Data
 
-### Summary of Warning (Orange) and Error (Red) Messages After Trimming
+### Summary of Warning (Orange) and Error (Red) Messages
 
-> Note: Reads were first processed using **VelvetOptimizer** to explore assembly quality. SPAdes was compared and ultimately selected because it produced higher-quality assemblies.
-
----
-
-### Trimmed Data FastQC Images
-
-#### 🔹 Paired Reads (Used for Assembly)
-
-**Read 1 Paired**
-
-![Trimmed Summary R1 Paired](/data/trimmed_fastqc_summary_1_paired.png)
-
-**Read 2 Paired**
-
-![Trimmed Summary R2 Paired](/data/trimmed_fastqc_summary_2_paired.png)
+After trimming:
+- Adapter contamination removed
+- Overall quality improved
+- Minor warnings remained but acceptable for assembly
 
 ---
 
-#### 🔹 Unpaired Reads
+### Trimmed Paired Reads (Used for Assembly)
 
-**Read 1 Unpaired**
-
-![Trimmed Summary R1 Unpaired](/data/trimmed_fastqc_summary_1_unpaired.png)
-
-**Read 2 Unpaired**
-
-![Trimmed Summary R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
+![Trimmed R1 Paired](/data/trimmed_fastqc_summary_1_paired.png)  
+![Trimmed R2 Paired](/data/trimmed_fastqc_summary_2_paired.png)
 
 ---
 
-<details>
-<summary>Click to expand: Interpretation of FastQC Results</summary>
+### Trimmed Unpaired Reads
 
-Raw reads showed adapter contamination and elevated duplication levels, which justified trimming prior to assembly.
-
-After trimming, adapter contamination was successfully removed and overall quality improved. Remaining warnings were minor and did not prevent assembly.
-
-</details>
+![Trimmed R1 Unpaired](/data/trimmed_fastqc_summary_1_unpaired.png)  
+![Trimmed R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
 
 ---
 
-# Genome Assembly
+# Genome Assembly with Velvet
 
-## Assembly with SPAdes
+Velvet assemblies were generated first using **VelvetOptimizer**, testing a range of k-mer values around the Velvet Advisor recommendation.
+
+## Round 1 Optimization (Step = 10)
 
 ```
-spades.py \
--1 clean_R1.fq.gz \
--2 clean_R2.fq.gz \
--k 79 \
--o spades_output
+sbatch velvetoptimiser.sh Bm88511 lowK highK 10
 ```
 
-Paired-end Illumina reads were assembled using the recommended k-mer size of 79.
+Results:
 
-> Note: **VelvetOptimizer** was run first to optimize assembly parameters. SPAdes was selected as the final assembler because it produced higher-quality contigs and N50 compared with VelvetOptimizer.
+- Genome Size: 41,616,069 bp  
+- Contigs: 9,046  
+- N50: 14,242 bp  
 
 ---
 
-# Assembly Results
+## Round 2 Optimization (Step = 2)
 
-## Final SPAdes Assembly
+Further optimization was performed using a narrower k-mer range.
+
+```
+sbatch velvetoptimiser.sh Bm88511 newLowK newHighK 2
+```
+
+Results:
+
+- Genome Size: 41,611,510 bp  
+- Contigs: 9,025  
+- N50: 14,187 bp  
+
+---
+
+# Genome Assembly with SPAdes
+
+SPAdes was then used for comparison.
+
+```
+sbatch spades.sh Bm88511
+```
+
+SPAdes uses multiple k-mers (21, 33, 55, 77) and built-in error correction.
+
+---
+
+## Final SPAdes Assembly Metrics
 
 | Metric | Value |
 |--------|--------|
@@ -171,55 +165,44 @@ Paired-end Illumina reads were assembled using the recommended k-mer size of 79.
 
 ---
 
-## Comparison (Step = 10)
+# Assembly Comparison
 
-> VelvetOptimizer assemblies were also generated and compared; SPAdes gave better quality metrics.
+| Assembler | Genome Size | Contigs | N50 |
+|-----------|-------------|---------|------|
+| Velvet (Step 10) | 41,616,069 | 9,046 | 14,242 |
+| Velvet (Step 2) | 41,611,510 | 9,025 | 14,187 |
+| **SPAdes** | **41,509,816** | **6,482** | **77,767** |
 
-| Metric | Value |
-|--------|--------|
-| Genome Size | 41,616,069 bp |
-| Number of Contigs | 9,046 |
-| N50 | 14,242 bp |
+SPAdes was selected as the final assembly because it:
 
----
-
-## Comparison (Step = 2)
-
-| Metric | Value |
-|--------|--------|
-| Genome Size | 41,611,510 bp |
-| Number of Contigs | 9,025 |
-| N50 | 14,187 bp |
+- Produced significantly higher N50  
+- Reduced number of contigs  
+- Improved overall contiguity  
 
 ---
 
 # Genome Visualization with Bandage
 
-The final SPAdes assembly was visualized using **Bandage**. Screenshots were generated for:
+The final SPAdes assembly graph was visualized using **Bandage**.
 
-1. The **whole assembly graph**  
-2. A **single contig of interest** (node 119964) with scope = 4  
-
----
-
-### Whole Assembly Graph
+## Whole Assembly Graph
 
 ![Whole Assembly Graph](/data/Bm88511_graph_spades.jpg)
 
 ---
 
-### Single Contig + Scope = 4 (Node 119964)
+## Single Contig + Scope = 4 (Node 119964)
 
-![Single Contig Node 119964](/data/Bm88511_graph_spades_node119964_4.jpg)
+![Node 119964 Scope 4](/data/Bm88511_graph_spades_node119964_4.jpg)
 
 ---
 
 <details>
-<summary>Click to expand: Interpretation</summary>
+<summary>Interpretation</summary>
 
-- The **whole assembly graph** shows connectivity and contig structure.  
-- The **single contig graph** highlights node 119964 in detail, showing local connections.  
-- These visualizations confirm contiguity and help detect possible assembly breaks or repeats.
+The whole graph shows a dominant interconnected cluster with limited complex tangles, indicating good assembly continuity.
+
+The zoomed node (scope = 4) reveals local connectivity and confirms proper contig extension without excessive branching.
 
 </details>
 
@@ -228,9 +211,11 @@ The final SPAdes assembly was visualized using **Bandage**. Screenshots were gen
 # Software Versions
 
 ```
+velveth --version
+velvetg --version
 spades.py --version
 fastqc --version
-singularity --version
+bandage --version
 ```
 
 ---
@@ -241,9 +226,16 @@ singularity --version
 MyGenome/
 │
 ├── data/
+│   ├── FastQC images
+│   ├── Bandage screenshots
+│
 ├── results/
+│   ├── Velvet assemblies
+│   ├── SPAdes assembly
+│
 ├── scripts/
+│   ├── velvetoptimiser.sh
+│   ├── spades.sh
+│
 └── README.md
 ```
-
----
