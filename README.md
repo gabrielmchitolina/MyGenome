@@ -1,30 +1,30 @@
 # 🧬 MyGenome  
-Whole-Genome Assembly of *Pyricularia oryzae* Isolate Bm88511
+Whole-Genome Assembly of *Pyricularia oryzae* Isolate **Bm88511**
 
-This repository documents the complete genome assembly workflow performed for isolate **Bm88511** using Illumina paired-end sequencing data.
+This repository documents the complete genome assembly workflow for isolate **Bm88511**, from NCBI metadata submission through quality control, trimming, assembly optimization, graph visualization, and final assembly selection.
 
 ---
 
 # 📚 Table of Contents
 
 1. [Project Overview](#project-overview)  
-2. [Raw Data Information](#raw-data-information)  
-3. [Quality Control (FastQC)](#quality-control-fastqc)  
-4. [Genome Assembly with Velvet](#genome-assembly-with-velvet)  
-5. [Genome Assembly with SPAdes](#genome-assembly-with-spades)  
-6. [Assembly Comparison](#assembly-comparison)  
-7. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
-8. [Software Versions](#software-versions)  
-9. [Repository Structure](#repository-structure)  
+2. [NCBI Submissions](#ncbi-submissions)  
+3. [Raw Data Information](#raw-data-information)  
+4. [Quality Control (FastQC)](#quality-control-fastqc)  
+5. [Read Trimming (Trimmomatic)](#read-trimming-trimmomatic)  
+6. [Genome Assembly with VelvetOptimizer](#genome-assembly-with-velvetoptimizer)  
+7. [Genome Assembly with SPAdes (Selected)](#genome-assembly-with-spades-selected)  
+8. [Assembly Comparison and Selection](#assembly-comparison-and-selection)  
+9. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
+10. [Final Assembly Files](#final-assembly-files)  
+11. [Software Versions](#software-versions)  
+12. [Repository Structure](#repository-structure)  
 
 ---
 
 # Project Overview
 
 - **Researcher:** Gabriel Chitolina  
-- **SRA Accession:** SRR37270005  
-- **BioProject:** PRJNA926786  
-- **BioSample:** SAMN55064733  
 - **Organism:** *Pyricularia oryzae*  
 - **Isolate:** Bm88511  
 - **Host:** *Urochloa mutica*  
@@ -37,7 +37,30 @@ This repository documents the complete genome assembly workflow performed for is
 **VM username:** gde267@gde267.cs.uky.edu  
 **MCC username:** gde267@mcc.uky.edu  
 
-**Objective:** Generate and optimize a high-quality draft genome assembly.
+**Objective:** Generate and optimize a high-quality draft genome assembly and evaluate assembly performance across algorithms.
+
+---
+
+# NCBI Submissions
+
+## BioSample Submission
+
+- **BioProject:** PRJNA926786  
+- **BioSample:** SAMN55064733  
+
+Metadata submitted using the MIGS Eukaryotic: plant-associated package.
+
+## Sequence Read Archive (SRA)
+
+- **SRA Accession:** SRR37270005  
+- **Release Date:** 12/31/2026  
+
+Raw paired-end FASTQ files:
+
+
+Bm88511_1.fq.gz
+Bm88511_2.fq.gz
+
 
 ---
 
@@ -48,25 +71,20 @@ This repository documents the complete genome assembly workflow performed for is
 - Total bases (cleaned R1 + R2): **1,087,853,572 bp**  
 - Estimated genome size: **~40 Mb**
 
-FASTQ files:
-
-```
-Bm88511_1.fq.gz
-Bm88511_2.fq.gz
-```
-
 ---
 
 # Quality Control (FastQC)
 
+Quality control was performed on the VM using FastQC.
+
 ## 1️⃣ Raw Data
 
-### Summary of Warning (Orange) and Error (Red) Messages
+### Summary of Warnings and Errors
 
 Raw reads showed:
-- Adapter contamination
-- Elevated duplication levels
-- Minor per-base sequence quality warnings
+- Adapter contamination  
+- Elevated duplication levels  
+- Minor per-base sequence quality warnings  
 
 ---
 
@@ -86,12 +104,11 @@ Raw reads showed:
 
 ## 2️⃣ Trimmed Data
 
-### Summary of Warning (Orange) and Error (Red) Messages
+### Summary After Trimming
 
-After trimming:
-- Adapter contamination removed
-- Overall quality improved
-- Minor warnings remained but acceptable for assembly
+- Adapter contamination removed  
+- Overall sequence quality improved  
+- Minor warnings remained but acceptable for assembly  
 
 ---
 
@@ -109,120 +126,102 @@ After trimming:
 
 ---
 
-# Genome Assembly with Velvet
+# Read Trimming (Trimmomatic)
 
-Velvet assemblies were generated first using **VelvetOptimizer**, testing a range of k-mer values around the Velvet Advisor recommendation.
+Reads were trimmed using Trimmomatic v0.38:
 
-## Round 1 Optimization (Step = 10)
+```bash
+java -jar trimmomatic-0.38.jar PE -threads 2 -phred33 \
+-trimlog Bm88511_errorlog.txt \
+Bm88511_1.fq.gz Bm88511_2.fq.gz \
+Bm88511_1_paired.fastq Bm88511_1_unpaired.fastq \
+Bm88511_2_paired.fastq Bm88511_2_unpaired.fastq \
+ILLUMINACLIP:adaptors.fa:2:30:10 \
+SLIDINGWINDOW:20:20 MINLEN:125
 
-```
-sbatch velvetoptimiser.sh Bm88511 lowK highK 10
-```
+Only paired reads were used for downstream assembly.
 
-Results:
+Genome Assembly with VelvetOptimizer
 
-- Genome Size: 41,616,069 bp  
-- Contigs: 9,046  
-- N50: 14,242 bp  
+Velvet assemblies were generated first using VelvetOptimizer to explore k-mer performance.
 
----
-
-## Round 2 Optimization (Step = 2)
-
-Further optimization was performed using a narrower k-mer range.
-
-```
-sbatch velvetoptimiser.sh Bm88511 newLowK newHighK 2
-```
+Round 1 Optimization (Step = 10)
+sbatch velvetoptimiser.sh Bm88511 39 79 10
 
 Results:
 
-- Genome Size: 41,611,510 bp  
-- Contigs: 9,025  
-- N50: 14,187 bp  
+Genome Size: 41,616,069 bp
 
----
+Contigs: 9,046
 
-# Genome Assembly with SPAdes
+N50: 14,242 bp
 
-SPAdes was then used for comparison.
+Round 2 Optimization (Step = 2)
+sbatch velvetoptimiser.sh Bm88511 69 89 2
 
-```
+Results:
+
+Genome Size: 41,611,510 bp
+
+Contigs: 9,025
+
+N50: 14,187 bp
+
+Velvet assemblies were fragmented and exhibited relatively low N50 values.
+
+Genome Assembly with SPAdes (Selected)
+
+SPAdes was used for comparison using multi-k-mer assembly and built-in error correction.
+
 sbatch spades.sh Bm88511
-```
 
-SPAdes uses multiple k-mers (21, 33, 55, 77) and built-in error correction.
+SPAdes uses multiple k-mers (21, 33, 55, 77).
 
----
+Final SPAdes Assembly Metrics
+Metric	Value
+Genome Size	41,509,816 bp
+Number of Contigs	6,482
+N50	77,767 bp
+Assembly Comparison and Selection
+Assembler	Genome Size	Contigs	N50
+Velvet (Step 10)	41,616,069	9,046	14,242
+Velvet (Step 2)	41,611,510	9,025	14,187
+SPAdes	41,509,816	6,482	77,767
+Final Selection
 
-## Final SPAdes Assembly Metrics
+SPAdes was selected because it:
 
-| Metric | Value |
-|--------|--------|
-| Genome Size | 41,509,816 bp |
-| Number of Contigs | 6,482 |
-| N50 | 77,767 bp |
+Increased N50 by more than 5-fold
 
----
+Reduced contig count substantially
 
-# Assembly Comparison
+Improved overall assembly contiguity
 
-| Assembler | Genome Size | Contigs | N50 |
-|-----------|-------------|---------|------|
-| Velvet (Step 10) | 41,616,069 | 9,046 | 14,242 |
-| Velvet (Step 2) | 41,611,510 | 9,025 | 14,187 |
-| **SPAdes** | **41,509,816** | **6,482** | **77,767** |
+Genome Visualization with Bandage
 
-SPAdes was selected as the final assembly because it:
+The SPAdes assembly graph (assembly_graph.fastg) was visualized using Bandage.
 
-- Produced significantly higher N50  
-- Reduced number of contigs  
-- Improved overall contiguity  
+Whole Assembly Graph
 
----
+Single Contig + Scope = 4 (Node 119964)
 
-# Genome Visualization with Bandage
-
-The final SPAdes assembly graph was visualized using **Bandage**.
-
-## Whole Assembly Graph
-
-![Whole Assembly Graph](/data/Bm88511_graph_spades.jpg)
-
----
-
-## Single Contig + Scope = 4 (Node 119964)
-
-![Node 119964 Scope 4](/data/Bm88511_graph_spades_node119964_4.jpg)
-
----
-
-<details>
-<summary>Interpretation</summary>
+<details> <summary>Graph Interpretation</summary>
 
 The whole graph shows a dominant interconnected cluster with limited complex tangles, indicating good assembly continuity.
 
 The zoomed node (scope = 4) reveals local connectivity and confirms proper contig extension without excessive branching.
 
 </details>
-
----
-
-# Software Versions
-
-```
+Final Assembly Files
+Bm88511_final.fasta
+Bm88511_contig_map.txt
+Software Versions
 velveth --version
 velvetg --version
 spades.py --version
 fastqc --version
 bandage --version
-```
-
----
-
-# Repository Structure
-
-```
+Repository Structure
 MyGenome/
 │
 ├── data/
@@ -238,4 +237,3 @@ MyGenome/
 │   ├── spades.sh
 │
 └── README.md
-```
