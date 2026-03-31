@@ -38,6 +38,23 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 **MCC username:** gde267@mcc.uky.edu  
 
 **Objective:** Generate and optimize a high-quality genome assembly
+
+---
+
+# Data Retrieval
+
+Raw sequencing data were retrieved from Dr. Mark Farman's personal computer and transferred to the local working environment using secure copy (SCP).
+
+```bash
+scp -r ngs@10.163.188.11:~/Desktop/Bm88511 ~/sequences
+
+This command recursively copies the directory Bm88511 from the remote machine (10.163.188.11) to the local directory ~/sequences.
+
+-r: Recursively transfers all files and subdirectories
+Source: Dr. Mark Farman's personal computer (user: ngs)
+Destination: Local working directory (~/sequences)
+
+The transferred directory contained the raw paired-end FASTQ files used for downstream analysis.
 ---
 
 # NCBI Submissions
@@ -58,7 +75,6 @@ Raw paired-end FASTQ files:
 
 Bm88511_1.fq.gz  
 Bm88511_2.fq.gz  
-
 ---
 
 # Raw Data Information
