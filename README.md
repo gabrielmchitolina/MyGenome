@@ -37,8 +37,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 **VM username:** gde267@gde267.cs.uky.edu  
 **MCC username:** gde267@mcc.uky.edu  
 
-**Objective:** Generate and optimize a high-quality draft genome assembly and evaluate assembly performance across algorithms.
-
+**Objective:** Generate and optimize a high-quality genome assembly
 ---
 
 # NCBI Submissions
