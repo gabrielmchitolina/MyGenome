@@ -9,17 +9,18 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 
 1. [Project Overview](#project-overview)  
 2. [NCBI Submissions](#ncbi-submissions)  
-3. [Raw Data Information](#raw-data-information)  
-4. [Quality Control (FastQC)](#quality-control-fastqc)  
-5. [Read Trimming (Trimmomatic)](#read-trimming-trimmomatic)  
-6. [Genome Assembly with VelvetOptimizer](#genome-assembly-with-velvetoptimizer)  
-7. [Genome Assembly with SPAdes (Selected)](#genome-assembly-with-spades-selected)  
-8. [Assembly Comparison and Selection](#assembly-comparison-and-selection)  
-9. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
-10. [Final Assembly Files](#final-assembly-files)  
-11. [Software Versions](#software-versions)  
-12. [Repository Structure](#repository-structure)  
-
+3. [Data Retrieval](#data-retrieval)  
+4. [Raw Data Information](#raw-data-information)  
+5. [Quality Control (FastQC)](#quality-control-fastqc)  
+6. [Read Trimming (Trimmomatic)](#read-trimming-trimmomatic)  
+7. [Genome Assembly with VelvetOptimizer](#genome-assembly-with-velvetoptimizer)  
+8. [Genome Assembly with SPAdes (Selected)](#genome-assembly-with-spades-selected)  
+9. [Assembly Comparison and Selection](#assembly-comparison-and-selection)  
+10. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
+11. [Final Assembly Files](#final-assembly-files)  
+12. [BUSCO Assessment](#busco-assessment)  
+13. [Software Versions](#software-versions)  
+14. [Repository Structure](#repository-structure)   
 ---
 
 # Project Overview
@@ -38,7 +39,6 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 **MCC username:** gde267@mcc.uky.edu  
 
 **Objective:** Generate and optimize a high-quality genome assembly
-
 ---
 
 # Data Retrieval
@@ -93,6 +93,14 @@ Quality control was performed on the VM using FastQC.
 
 ## 1️⃣ Raw Data
 
+## FastQC Commands
+
+Raw read quality assessment:
+
+```bash
+fastqc Bm88511/Bm88511_1.fq.gz Bm88511/Bm88511_2.fq.gz -o ~/sequences
+```
+
 ### Summary of Warnings and Errors
 
 Raw reads showed:
@@ -116,6 +124,12 @@ Raw reads showed:
 
 ## 2️⃣ Trimmed Data
 
+Post-trimming quality assessment:
+
+```bash
+fastqc Bm88511_1_paired.fastq Bm88511_2_paired.fastq
+```
+
 ### Summary After Trimming
 
 - Adapter contamination removed  
@@ -131,7 +145,6 @@ Raw reads showed:
 
 ![Trimmed R1 Unpaired](/data/trimmed_fastqc_summary_1_unpaired.png)  
 ![Trimmed R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
-
 ---
 
 # Read Trimming (Trimmomatic)
@@ -149,8 +162,8 @@ SLIDINGWINDOW:20:20 MINLEN:125
 ```
 
 Only paired reads were used for downstream assembly.
-
 ---
+
 
 # Genome Assembly with VelvetOptimizer
 
