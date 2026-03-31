@@ -47,6 +47,7 @@ Raw sequencing data were retrieved from Dr. Mark Farman's personal computer and 
 
 ```bash
 scp -r ngs@10.163.188.11:~/Desktop/Bm88511 ~/sequences
+```
 
 This command recursively copies the directory Bm88511 from the remote machine (10.163.188.11) to the local directory ~/sequences.
 
