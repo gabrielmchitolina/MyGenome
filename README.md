@@ -18,9 +18,10 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 9. [Assembly Comparison and Selection](#assembly-comparison-and-selection)  
 10. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
 11. [Final Assembly Files](#final-assembly-files)  
-12. [BUSCO Assessment](#busco-assessment)  
-13. [Software Versions](#software-versions)  
-14. [Repository Structure](#repository-structure)   
+12. [BUSCO Assessment](#busco-assessment)
+13. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction) 
+14. [Software Versions](#software-versions)  
+15. [Repository Structure](#repository-structure)   
 ---
 
 # Project Overview
@@ -162,8 +163,8 @@ SLIDINGWINDOW:20:20 MINLEN:125
 ```
 
 Only paired reads were used for downstream assembly.
----
 
+---
 
 # Genome Assembly with VelvetOptimizer
 
@@ -312,6 +313,91 @@ This assembly shows very high completeness (98.6%) with minimal duplication (0.2
 
 ---
 
+# Gene Prediction Analysis (SNAP vs AUGUSTUS)
+
+## Methods
+
+### SNAP
+
+Training SNAP required generating a species-specific HMM using annotations from a related genome.
+
+```bash
+# Start screen session
+screen -S genes bash -l
+
+# Navigate to working directory
+cd ~/genes/snap
+
+# Prepare training data
+echo '##FASTA' | cat B71Ref2_a0.3.gff3 - B71Ref2.fasta > B71Ref2.gff3
+
+# Convert to SNAP ZFF format
+maker2zff B71Ref2.gff3
+
+# Evaluate annotation statistics
+fathom genome.ann genome.dna -gene-stats
+
+# Categorize gene models
+fathom genome.ann genome.dna -categorize 1000
+
+# Extract high-quality gene set
+fathom uni.ann uni.dna -gene-stats
+
+# Export sequences for training
+fathom uni.ann uni.dna -export 1000 -plus
+
+# Train model
+forge export.ann export.dna
+
+# Assemble HMM
+hmm-assembler.pl Moryzae . > Moryzae.hmm
+```
+Gene prediction with SNAP:
+
+```bash
+# Run SNAP gene prediction
+snap-hmm Moryzae.hmm MyGenome.fasta > MyGenome-snap.zff
+
+# Generate statistics
+fathom MyGenome-snap.zff MyGenome.fasta -gene-stats
+
+# Convert to GFF2
+snap-hmm Moryzae.hmm MyGenome.fasta -gff > MyGenome-snap.gff2
+```
+
+### AUGUSTUS
+AUGUSTUS was run using a pre-trained model for a closely related species.
+
+```bash
+# Navigate to working directory
+cd ~/genes/augustus
+
+# Run AUGUSTUS gene prediction
+augustus --species=magnaporthe_grisea --gff3=on \
+--singlestrand=true --progress=true \
+MyGenomeID_final.fasta > MyGenomeID-augustus.gff3
+```
+### Results
+# Predicted Gene Counts
+Tool	Number of Predicted Genes
+SNAP	TBD
+AUGUSTUS	TBD
+
+### IGV Visualization
+# SNAP-only Gene Prediction
+
+# AUGUSTUS-only Gene Prediction
+
+# Same Exon/Intron Structure (SNAP vs AUGUSTUS)
+
+# Different Exon/Intron Structure (SNAP vs AUGUSTUS)
+
+# Notes
+SNAP predictions are based on a trained HMM specific to M. oryzae.
+AUGUSTUS uses a generalized HMM with species-specific parameters (magnaporthe_grisea).
+SNAP outputs simpler exon-based annotations, while AUGUSTUS provides more detailed gene structures including CDS and protein sequences.
+
+---
 # ✅ Workflow Status
 
 ✔ BioSample submitted  
