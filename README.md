@@ -321,7 +321,6 @@ This assembly shows very high completeness (98.6%) with minimal duplication (0.2
 
 Training SNAP required generating a species-specific HMM using annotations from a related genome.
 
-
 # Start screen session
 ```bash
 screen -S genes bash -l
@@ -335,6 +334,7 @@ cd ~/genes/snap
 # Prepare training data
 ```bash
 echo '##FASTA' | cat B71Ref2_a0.3.gff3 - B71Ref2.fasta > B71Ref2.gff3
+```
 
 # Convert to SNAP ZFF format
 ```bash
@@ -371,31 +371,39 @@ forge export.ann export.dna
 hmm-assembler.pl Moryzae . > Moryzae.hmm
 ```
 
-# Gene prediction with SNAP:
+### Gene prediction with SNAP:
 
-```bash
 # Run SNAP gene prediction
+```bash
 snap-hmm Moryzae.hmm MyGenome.fasta > MyGenome-snap.zff
+```
 
 # Generate statistics
+```bash
 fathom MyGenome-snap.zff MyGenome.fasta -gene-stats
+```
 
 # Convert to GFF2
+```bash
 snap-hmm Moryzae.hmm MyGenome.fasta -gff > MyGenome-snap.gff2
 ```
+---
 
 ### AUGUSTUS
 AUGUSTUS was run using a pre-trained model for a closely related species.
 
-```bash
 # Navigate to working directory
+```bash
 cd ~/genes/augustus
+```
 
 # Run AUGUSTUS gene prediction
+```bash
 augustus --species=magnaporthe_grisea --gff3=on \
 --singlestrand=true --progress=true \
 MyGenomeID_final.fasta > MyGenomeID-augustus.gff3
 ```
+
 ### Results
 # Predicted Gene Counts
 Tool	Number of Predicted Genes
