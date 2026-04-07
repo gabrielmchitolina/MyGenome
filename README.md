@@ -273,7 +273,42 @@ spades.py --version
 fastqc --version
 bandage --version
 ```
+---
+# BUSCO Assessment
 
+**Run details:**
+- **BUSCO version:** 5.7.0  
+- **Lineage dataset:** ascomycota_odb10 (n = 1706 BUSCOs)  
+- **Mode:** euk_genome_min  
+- **Gene predictor:** miniprot  
+
+### Completeness Metrics
+- **Complete (C):** 98.6%  
+  - **Single-copy (S):** 98.4%  
+  - **Duplicated (D):** 0.2%  
+- **Fragmented (F):** 0.2%  
+- **Missing (M):** 1.2%  
+- **Total BUSCO groups (n):** 1706  
+- **Error rate (E):** 3.5%  
+
+### BUSCO Counts
+- Complete BUSCOs: 1683  
+  - Complete and single-copy: 1679  
+  - Complete and duplicated: 4  
+- Fragmented BUSCOs: 3  
+- Missing BUSCOs: 20  
+- BUSCOs with internal stop codons: 59  
+
+### Assembly Statistics
+- Number of scaffolds: 3,595  
+- Number of contigs: 3,676  
+- Total assembly length: 41,129,872 bp  
+- Percent gaps: 0.016%  
+- Scaffold N50: 75 KB  
+- Contig N50: 69 KB  
+
+### Interpretation
+This assembly shows **very high completeness (98.6%)** with **minimal duplication (0.2%)** and **very few missing genes (1.2%)**, indicating a high-quality genome assembly.
 ---
 
 # ✅ Workflow Status
