@@ -250,9 +250,9 @@ The SPAdes assembly graph (`assembly_graph.fastg`) was visualized using Bandage.
 <details>
 <summary>Graph Interpretation</summary>
 
-The whole graph shows a dominant interconnected cluster with limited complex tangles, indicating good assembly continuity.
+The whole graph shows a  interconnected cluster.
 
-The zoomed node (scope = 4) reveals local connectivity and confirms proper contig extension without excessive branching.
+The zoomed node (scope = 4) reveals local connectivity and confirms contig extension without excessive branching.
 
 </details>
 
