@@ -261,7 +261,6 @@ The zoomed node (scope = 4) reveals local connectivity and confirms proper conti
 # Final Assembly Files
 
 Bm88511_final.fasta  
-Bm88511_contig_map.txt  
 
 ---
 
@@ -273,28 +272,6 @@ velvetg --version
 spades.py --version
 fastqc --version
 bandage --version
-```
-
----
-
-# Repository Structure
-
-```
-MyGenome/
-│
-├── data/
-│   ├── FastQC images
-│   ├── Bandage screenshots
-│
-├── results/
-│   ├── Velvet assemblies
-│   ├── SPAdes assembly
-│
-├── scripts/
-│   ├── velvetoptimiser.sh
-│   ├── spades.sh
-│
-└── README.md
 ```
 
 ---
