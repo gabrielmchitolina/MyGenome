@@ -373,17 +373,17 @@ hmm-assembler.pl Moryzae . > Moryzae.hmm
 
 ### Gene prediction with SNAP:
 
-# Run SNAP gene prediction
+#### Run SNAP gene prediction
 ```bash
 snap-hmm Moryzae.hmm MyGenome.fasta > MyGenome-snap.zff
 ```
 
-# Generate statistics
+#### Generate statistics
 ```bash
 fathom MyGenome-snap.zff MyGenome.fasta -gene-stats
 ```
 
-# Convert to GFF2
+#### Convert to GFF2
 ```bash
 snap-hmm Moryzae.hmm MyGenome.fasta -gff > MyGenome-snap.gff2
 ```
