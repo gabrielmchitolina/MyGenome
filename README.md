@@ -265,16 +265,6 @@ Bm88511_final.fasta
 
 ---
 
-# Software Versions
-
-```bash
-velveth --version
-velvetg --version
-spades.py --version
-fastqc --version
-bandage --version
-```
----
 # BUSCO Assessment
 
 **Run details:**
@@ -426,6 +416,16 @@ SNAP outputs simpler exon-based annotations, while AUGUSTUS provides more detail
 
 ---
 
+# Software Versions
+
+```bash
+velveth --version
+velvetg --version
+spades.py --version
+fastqc --version
+bandage --version
+```
+---
 # ✅ Workflow Status
 
 ✔ BioSample submitted  
