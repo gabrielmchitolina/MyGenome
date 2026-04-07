@@ -321,52 +321,52 @@ This assembly shows very high completeness (98.6%) with minimal duplication (0.2
 
 Training SNAP required generating a species-specific HMM using annotations from a related genome.
 
-# Start screen session
+#### Start screen session
 ```bash
 screen -S genes bash -l
 ```
 
-# Navigate to working directory
+#### Navigate to working directory
 ```bash
 cd ~/genes/snap
 ```
 
-# Prepare training data
+#### Prepare training data
 ```bash
 echo '##FASTA' | cat B71Ref2_a0.3.gff3 - B71Ref2.fasta > B71Ref2.gff3
 ```
 
-# Convert to SNAP ZFF format
+#### Convert to SNAP ZFF format
 ```bash
 maker2zff B71Ref2.gff3
 ```
 
-# Evaluate annotation statistics
+#### Evaluate annotation statistics
 ```bash
 fathom genome.ann genome.dna -gene-stats
 ```
 
-# Categorize gene models
+#### Categorize gene models
 ```bash
 fathom genome.ann genome.dna -categorize 1000
 ```
 
-# Extract high-quality gene set
+#### Extract high-quality gene set
 ```bash
 fathom uni.ann uni.dna -gene-stats
 ```
 
-# Export sequences for training
+#### Export sequences for training
 ```bash
 fathom uni.ann uni.dna -export 1000 -plus
 ```
 
-# Train model
+#### Train model
 ```bash
 forge export.ann export.dna
 ```
 
-# Assemble HMM
+#### Assemble HMM
 ```bash
 hmm-assembler.pl Moryzae . > Moryzae.hmm
 ```
@@ -392,34 +392,34 @@ snap-hmm Moryzae.hmm MyGenome.fasta -gff > MyGenome-snap.gff2
 ### AUGUSTUS
 AUGUSTUS was run using a pre-trained model for a closely related species.
 
-# Navigate to working directory
+#### Navigate to working directory
 ```bash
 cd ~/genes/augustus
 ```
 
-# Run AUGUSTUS gene prediction
+#### Run AUGUSTUS gene prediction
 ```bash
 augustus --species=magnaporthe_grisea --gff3=on \
 --singlestrand=true --progress=true \
 MyGenomeID_final.fasta > MyGenomeID-augustus.gff3
 ```
 
-### Results
-# Predicted Gene Counts
+## Results
+### Predicted Gene Counts
 Tool	Number of Predicted Genes
 SNAP	TBD
 AUGUSTUS	TBD
 
 ### IGV Visualization
-# SNAP-only Gene Prediction
+#### SNAP-only Gene Prediction
 
-# AUGUSTUS-only Gene Prediction
+#### AUGUSTUS-only Gene Prediction
 
-# Same Exon/Intron Structure (SNAP vs AUGUSTUS)
+#### Same Exon/Intron Structure (SNAP vs AUGUSTUS)
 
-# Different Exon/Intron Structure (SNAP vs AUGUSTUS)
+#### Different Exon/Intron Structure (SNAP vs AUGUSTUS)
 
-# Notes
+#### Notes
 SNAP predictions are based on a trained HMM specific to M. oryzae.
 AUGUSTUS uses a generalized HMM with species-specific parameters (magnaporthe_grisea).
 SNAP outputs simpler exon-based annotations, while AUGUSTUS provides more detailed gene structures including CDS and protein sequences.
