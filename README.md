@@ -321,38 +321,57 @@ This assembly shows very high completeness (98.6%) with minimal duplication (0.2
 
 Training SNAP required generating a species-specific HMM using annotations from a related genome.
 
-```bash
+
 # Start screen session
+```bash
 screen -S genes bash -l
+```
 
 # Navigate to working directory
+```bash
 cd ~/genes/snap
+```
 
 # Prepare training data
+```bash
 echo '##FASTA' | cat B71Ref2_a0.3.gff3 - B71Ref2.fasta > B71Ref2.gff3
 
 # Convert to SNAP ZFF format
+```bash
 maker2zff B71Ref2.gff3
+```
 
 # Evaluate annotation statistics
+```bash
 fathom genome.ann genome.dna -gene-stats
+```
 
 # Categorize gene models
+```bash
 fathom genome.ann genome.dna -categorize 1000
+```
 
 # Extract high-quality gene set
+```bash
 fathom uni.ann uni.dna -gene-stats
+```
 
 # Export sequences for training
+```bash
 fathom uni.ann uni.dna -export 1000 -plus
+```
 
 # Train model
+```bash
 forge export.ann export.dna
+```
 
 # Assemble HMM
+```bash
 hmm-assembler.pl Moryzae . > Moryzae.hmm
 ```
-Gene prediction with SNAP:
+
+# Gene prediction with SNAP:
 
 ```bash
 # Run SNAP gene prediction
@@ -398,6 +417,7 @@ AUGUSTUS uses a generalized HMM with species-specific parameters (magnaporthe_gr
 SNAP outputs simpler exon-based annotations, while AUGUSTUS provides more detailed gene structures including CDS and protein sequences.
 
 ---
+
 # ✅ Workflow Status
 
 ✔ BioSample submitted  
