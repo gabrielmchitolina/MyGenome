@@ -365,17 +365,17 @@ hmm-assembler.pl Moryzae . > Moryzae.hmm
 
 #### Run SNAP gene prediction
 ```bash
-snap-hmm Moryzae.hmm MyGenome.fasta > MyGenome-snap.zff
+snap-hmm Moryzae.hmm Bm88511.fasta > Bm88511-snap.zff
 ```
 
 #### Generate statistics
 ```bash
-fathom MyGenome-snap.zff MyGenome.fasta -gene-stats
+fathom Bm88511-snap.zff Bm88511.fasta -gene-stats
 ```
 
 #### Convert to GFF2
 ```bash
-snap-hmm Moryzae.hmm MyGenome.fasta -gff > MyGenome-snap.gff2
+snap-hmm Moryzae.hmm Bm88511.fasta -gff > Bm88511-snap.gff2
 ```
 ---
 
@@ -391,7 +391,7 @@ cd ~/genes/augustus
 ```bash
 augustus --species=magnaporthe_grisea --gff3=on \
 --singlestrand=true --progress=true \
-MyGenomeID_final.fasta > MyGenomeID-augustus.gff3
+Bm88511_final.fasta > Bm88511-augustus.gff3
 ```
 
 ## Results
@@ -410,7 +410,7 @@ AUGUSTUS	TBD
 #### Different Exon/Intron Structure (SNAP vs AUGUSTUS)
 
 #### Notes
-SNAP predictions are based on a trained HMM specific to M. oryzae.
+SNAP predictions are based on a trained HMM specific to *M. oryzae*.
 AUGUSTUS uses a generalized HMM with species-specific parameters (magnaporthe_grisea).
 SNAP outputs simpler exon-based annotations, while AUGUSTUS provides more detailed gene structures including CDS and protein sequences.
 
