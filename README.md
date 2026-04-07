@@ -308,7 +308,8 @@ bandage --version
 - Contig N50: 69 KB  
 
 ### Interpretation
-This assembly shows **very high completeness (98.6%)** with **minimal duplication (0.2%)** and **very few missing genes (1.2%)**, indicating a high-quality genome assembly.
+This assembly shows very high completeness (98.6%) with minimal duplication (0.2%) and very few missing genes (1.2%), indicating a high-quality genome assembly.
+
 ---
 
 # ✅ Workflow Status
