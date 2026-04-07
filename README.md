@@ -19,7 +19,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 10. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
 11. [Final Assembly Files](#final-assembly-files)  
 12. [BUSCO Assessment](#busco-assessment)
-13. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction) 
+13. [Gene Prediction Analysis](#gene-prediction-analysis) 
 14. [Software Versions](#software-versions)  
 15. [Repository Structure](#repository-structure)   
 ---
