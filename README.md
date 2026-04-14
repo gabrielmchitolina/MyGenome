@@ -416,6 +416,11 @@ MAKER 12,934
 
 #### Different Exon/Intron Structure (SNAP vs AUGUSTUS)
 
+#### Gene was successfully predicted by SNAP, AUGUSTUS, and MAKER
+
+![Same Snap Augustus Maker Structure](/data/Snap_Aug_Maker.png)
+
+
 #### Notes
 SNAP predictions are based on a trained HMM specific to *M. oryzae*.
 AUGUSTUS uses a generalized HMM with species-specific parameters (magnaporthe_grisea).
