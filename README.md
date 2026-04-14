@@ -398,7 +398,7 @@ Bm88511_final.fasta > Bm88511-augustus.gff3
 ### Predicted Gene Counts
 Tool	Number of Predicted Genes
 SNAP	
-AUGUSTUS	
+AUGUSTUS 17,487
 MAKER 12,934
 
 ### IGV Visualization
