@@ -403,6 +403,8 @@ AUGUSTUS	TBD
 ### IGV Visualization
 #### SNAP-only Gene Prediction
 
+![SNAP Only](/data/Snap_only.png)
+
 #### AUGUSTUS-only Gene Prediction
 
 ![Augustus Only](/data/Augustus_only.png)
