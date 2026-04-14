@@ -411,6 +411,8 @@ AUGUSTUS	TBD
 
 #### Same Exon/Intron Structure (SNAP vs AUGUSTUS)
 
+![Same Exon/Intron Structure](/data/Snap_Aug_same.png)
+
 #### Different Exon/Intron Structure (SNAP vs AUGUSTUS)
 
 #### Notes
