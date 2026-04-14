@@ -405,6 +405,8 @@ AUGUSTUS	TBD
 
 #### AUGUSTUS-only Gene Prediction
 
+![Augustus Only](/data/Augustus_only.png)
+
 #### Same Exon/Intron Structure (SNAP vs AUGUSTUS)
 
 #### Different Exon/Intron Structure (SNAP vs AUGUSTUS)
