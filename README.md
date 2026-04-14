@@ -395,11 +395,32 @@ Bm88511_final.fasta > Bm88511-augustus.gff3
 ```
 
 ## Results
+
 ### Predicted Gene Counts
-Tool	Number of Predicted Genes
-SNAP	
-AUGUSTUS 17,487
-MAKER 12,934
+
+| Tool      | Number of Predicted Genes |
+|-----------|---------------------------|
+| SNAP      | *(not available)*         |
+| AUGUSTUS  | 17,487                    |
+| MAKER     | 12,934                    |
+
+---
+
+### How counts were obtained
+
+**MAKER**
+```bash
+awk -F'\t' '$3 == "gene" {count++} END {print count}' Bm88511-maker.gff3
+
+Output: 12934
+```
+
+**AUGUSTUS**
+```bash
+grep "^# start gene" Bm88511-augustus.gff3 | wc -l
+
+Output:17487
+```
 
 ### IGV Visualization
 #### SNAP-only Gene Prediction
