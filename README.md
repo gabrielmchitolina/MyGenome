@@ -17,11 +17,12 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 8. [Genome Assembly with SPAdes (Selected)](#genome-assembly-with-spades-selected)  
 9. [Assembly Comparison and Selection](#assembly-comparison-and-selection)  
 10. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
-11. [Final Assembly Files](#final-assembly-files)  
+11. [Final Assembly Files](#final-assembly-files)
 12. [BUSCO Assessment](#busco-assessment)
-13. [Gene Prediction Analysis](#gene-prediction-analysis) 
-14. [Software Versions](#software-versions)  
-15. [Repository Structure](#repository-structure)   
+13. [Mitochondrial_Contig_Identification](#mitochondrial-contig-identification)
+14. [Gene Prediction Analysis](#gene-prediction-analysis) 
+15. [Software Versions](#software-versions)  
+16. [Repository Structure](#repository-structure)   
 ---
 
 # Project Overview
@@ -300,6 +301,67 @@ Bm88511_final.fasta
 
 ### Interpretation
 This assembly shows very high completeness (98.6%) with minimal duplication (0.2%) and very few missing genes (1.2%), indicating a high-quality genome assembly.
+
+---
+
+# Mitochondrial Contig Identification
+
+We need to determine which contigs in the genome assembly correspond to the mitochondrial genome before submission to NCBI.
+
+## Step 1: Retrieve Mitochondrial Reference Sequence
+
+Copy the mitochondrial reference sequence:
+
+```bash
+cp /project/farman_s26cs480/RESOURCES/MoMitochondrion.fasta .
+```
+
+## Step 2: Run BLAST Against Genome Assembly
+
+Run blastn using Singularity on MCC with output format 6 and selected columns:
+
+```bash
+singularity run --app blast2120 /share/singularity/images/ccs/conda/amd-conda1-centos8.sinf \
+blastn -query MoMitochondrion.fasta \
+-subject MyGenome_final.fasta \
+-evalue 1e-50 \
+-max_target_seqs 20000 \
+-outfmt '6 qseqid sseqid slen length qstart qend sstart send btop' \
+-out MoMitochondrion.Bm88511.BLAST
+```
+
+## Step 3: Identify Mitochondrial Contigs
+
+Extract contigs where ≥90% of their length aligns to the mitochondrial reference:
+```bash
+awk '$4/$3 >= 0.9 {print $2 ",mitochondrion"}' MoMitochondrion.Bm88511.BLAST > Bm88511_mitochondrion.csv
+```
+
+This .csv file will be uploaded to NCBI to indicate mitochondrial contigs.
+
+## Step 4: Export Short/Partial Hits
+
+Export BLAST results that do not meet the ≥90% threshold:
+```bash
+awk '$4/$3 < 0.9' MoMitochondrion.Bm88511.BLAST > Bm88511_short_mitochondrial_hits.txt
+```
+## Step 5: Manual Inspection
+
+The file `Bm88511_short_mitochondrial_hits.txt` was manually inspected to identify contigs with **split alignments** that may together cover ≥90% of the contig.
+
+### Output
+
+```bash
+MoMito.70-15    Bm88511_contig675       10597   6671    28202   34865   1       6662    ...
+MoMito.70-15    Bm88511_contig675       10597   3941    1       3933    6663    10597   ...
+MoMito.70-15    Bm88511_contig624       12582   4608    20973   25571   5200    9804    ...
+MoMito.70-15    Bm88511_contig624       12582   3972    15859   19830   23      3994    ...
+MoMito.70-15    Bm88511_contig624       12582   2671    25608   28278   9913    12582   ...
+MoMito.70-15    Bm88511_contig624       12582   1143    19838   20968   4095    5236    ...
+MoMito.70-15    Bm88511_contig704       9221    276     10497   10749   9221    8946    ...
+```
+
+Identified mitochondrial contigs that did not meet the ≥90% threshold were manually added to the Bm88511_mitochondrion.csv file.
 
 ---
 
