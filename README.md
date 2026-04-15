@@ -363,6 +363,12 @@ MoMito.70-15    Bm88511_contig704       9221    276     10497   10749   9221    
 
 Identified mitochondrial contigs that did not meet the ≥90% threshold were manually added to the Bm88511_mitochondrion.csv file.
 
+### Output Files
+
+- [BLAST output](data/MoMitochondrion.Bm88511.BLAST)
+- [Short mitochondrial hits](data/Bm88511_short_mitochondrial_hits.txt)
+- [Final mitochondrial contigs CSV](data/Bm88511_mitochondrion.csv)
+
 ---
 
 # Gene Prediction Analysis (SNAP vs AUGUSTUS)
