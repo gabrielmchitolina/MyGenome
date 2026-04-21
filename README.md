@@ -468,7 +468,7 @@ Bm88511_final.fasta > Bm88511-augustus.gff3
 
 | Tool      | Number of Predicted Genes |
 |-----------|---------------------------|
-| SNAP      | *(not available)*         |
+| SNAP      | 12,517                    |
 | AUGUSTUS  | 17,487                    |
 | MAKER     | 12,934                    |
 
