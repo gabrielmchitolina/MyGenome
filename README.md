@@ -485,6 +485,13 @@ Bm88511_final.fasta > Bm88511-augustus.gff3
 
 ### How counts were obtained
 
+**SNAP**
+```bash
+awk '{print $9}' Bm88511-snap.gff2 | sort | uniq | wc -l
+```
+
+Output: 12,517
+
 **MAKER**
 ```bash
 awk -F'\t' '$3 == "gene" {count++} END {print count}' Bm88511-maker.gff3
