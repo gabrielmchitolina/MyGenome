@@ -118,12 +118,12 @@ Raw reads showed:
   ![Raw Summary R1](/data/raw_fastqc_summary_1.png)  
   ![Raw Adapter R1](/data/raw_fastqc_adapter_1.png)
 
+  #### Read 2
+
+  ![Raw Summary R2](/data/raw_fastqc_summary_2.png)  
+  ![Raw Adapter R2](/data/raw_fastqc_adapter_2.png)
+
 </details>
-
-#### Read 2
-
-![Raw Summary R2](/data/raw_fastqc_summary_2.png)  
-![Raw Adapter R2](/data/raw_fastqc_adapter_2.png)
 
 ---
 
