@@ -1,0 +1,8 @@
+code to calculate 
+A) Are there any contigs in your MyGenome assembly that have no corresponding matches in the B71 reference genome?
+B) Create a list of MyGenome contigs that lack matches in the B71 reference
+
+gde267@gde267:~$ grep -c "# 0 hits found" inverted.B71.Bm88511.BLAST
+775
+gde267@gde267:~$ grep -c "# 0 hits found" B71.Bm88511.BLAST
+0
