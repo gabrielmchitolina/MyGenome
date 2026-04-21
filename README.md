@@ -141,15 +141,21 @@ fastqc Bm88511_1_paired.fastq Bm88511_2_paired.fastq
 - Overall sequence quality improved  
 - Minor warnings remained but acceptable for assembly  
 
-### Trimmed Paired Reads (Used for Assembly)
+<details>
+  <summary><strong>Trimmed Paired Reads (Used for Assembly)</strong></summary>
 
-![Trimmed R1 Paired](/data/trimmed_fastqc_summary_1_paired.png)  
-![Trimmed R2 Paired](/data/trimmed_fastqc_summary_2_paired.png)
+  ![Trimmed R1 Paired](/data/trimmed_fastqc_summary_1_paired.png)  
+  ![Trimmed R2 Paired](/data/trimmed_fastqc_summary_2_paired.png)
 
-### Trimmed Unpaired Reads
+</details>
 
-![Trimmed R1 Unpaired](/data/trimmed_fastqc_summary_1_unpaired.png)  
-![Trimmed R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
+<details>
+  <summary><strong>Trimmed Unpaired Reads</strong></summary>
+
+  ![Trimmed R1 Unpaired](/data/trimmed_fastqc_summary_1_unpaired.png)  
+  ![Trimmed R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
+
+</details>
 ---
 
 # Read Trimming (Trimmomatic)
