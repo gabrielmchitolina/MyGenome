@@ -110,12 +110,15 @@ Raw reads showed:
 - Elevated duplication levels  
 - Minor per-base sequence quality warnings  
 
-### Raw Data Images
+<details>
+  <summary><strong>Raw Data Images</strong></summary>
 
-#### Read 1
+  #### Read 1
 
-![Raw Summary R1](/data/raw_fastqc_summary_1.png)  
-![Raw Adapter R1](/data/raw_fastqc_adapter_1.png)
+  ![Raw Summary R1](/data/raw_fastqc_summary_1.png)  
+  ![Raw Adapter R1](/data/raw_fastqc_adapter_1.png)
+
+</details>
 
 #### Read 2
 
