@@ -665,7 +665,7 @@ Chromosome-level inspection was performed to:
 - Assess genome completeness and synteny
 
 <details> <summary><strong> B71 Gaps in Bm88511</strong></summary>
-![Raw Summary R1](/data/b71-gaps-bm88511.png)
+!(/data/b71-gaps-bm88511.png)
 </details>
 
 ---
