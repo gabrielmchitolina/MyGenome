@@ -19,7 +19,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 10. [Genome Visualization with Bandage](#genome-visualization-with-bandage)  
 11. [Final Assembly Files](#final-assembly-files)
 12. [BUSCO Assessment](#busco-assessment)
-13. [Mitochondrial_Contig_Identification](#mitochondrial-contig-identification)
+13. [Mitochondrial Contig Identification](#mitochondrial-contig-identification)
 14. [Gene Prediction Analysis](#gene-prediction-analysis) 
 15. [Software Versions](#software-versions)  
 16. [Repository Structure](#repository-structure)   
