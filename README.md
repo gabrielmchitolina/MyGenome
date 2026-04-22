@@ -22,7 +22,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 13. [Mitochondrial Contig Identification](#mitochondrial-contig-identification)
 14. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction-analysis-snap-vs-augustus)
 15. [BLAST Analysis: Bm88511 vs B71 Reference](#blast-analysis-bm88511-vs-b71-reference)
-16. [Predicting Bm88511 Proteins](#predicting-bm88511-protein)
+16. [Predicting Bm88511 Proteins](#predicting-bm88511-proteins)
 
 ---
 
@@ -729,13 +729,13 @@ This command consolidates all MAKER annotation evidence into final genome-wide p
 The following FASTA files were produced:
 
 ### MAKER proteins (final):
-![Maker Proteins](/data/Bm88511.all.maker.proteins.fasta)
+[Maker Proteins](/data/Bm88511.all.maker.proteins.fasta)
 
 ### AUGUSTUS proteins:
-![AUGUSTUS proteins](/data/Bm88511.all.maker.augustus.proteins.fasta)
+[AUGUSTUS proteins](/data/Bm88511.all.maker.augustus.proteins.fasta)
 
 ### SNAP proteins:
-![SNAP proteins](/data/Bm88511.all.maker.snap.proteins.fasta)
+[SNAP proteins](/data/Bm88511.all.maker.snap.proteins.fasta)
 
 ---
 
