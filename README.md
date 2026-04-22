@@ -766,14 +766,16 @@ grep -c "^>" Bm88511.all.maker.snap.proteins.fasta
 
 ---
 
-## Comparison of predicted proteins with predicted gene counts (FASTA x GFF analysis)
-
 <div align="center">
+
+## Comparison of predicted proteins with predicted gene counts (FASTA × GFF analysis)
+
 | Tool      | Genes (GFF) | Proteins (FASTA) | Match? |
 |-----------|-------------|------------------|--------|
 | SNAP      | 12,517      | 12,517           | Yes  |
 | AUGUSTUS  | 17,487      | 11,054           | No  |
 | MAKER     | 12,934      | 12,934           | Yes  |
+
 </div>
 
 **Interpretation**
