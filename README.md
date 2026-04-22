@@ -760,9 +760,9 @@ grep -c "^>" Bm88511.all.maker.augustus.proteins.fasta
 ### SNAP proteins
 ```bash
 grep -c "^>" Bm88511.all.maker.snap.proteins.fasta
+```
 
 **Result:** 12,517 proteins
-```
 
 ---
 
