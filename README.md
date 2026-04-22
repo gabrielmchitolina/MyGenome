@@ -583,6 +583,9 @@ The following command was used:
 blastn -query B71.fasta -subject MyGenomeID_final.fasta -evalue 1e-100 -outfmt 7 > B71.MyGenomeID.BLAST
 ```
 
+### Output file generated
+![Bm88511 BLAST x B71](data/B71.Bm88511.BLAST)
+
 This search identifies high-confidence alignments between the reference genome (query) and the assembled genome (subject), allowing detection of shared and missing genomic regions.
 
 ---
