@@ -25,3 +25,20 @@ awk 'BEGIN {OFS="\t"}
   print $1, "BLAST", "match_part", start, end, $12, strand, ".",
         "ID="hsp_id";Parent="match_id";Target="$2" "$9" "$10" "strand
 }' B71.Bm88511.BLAST > blast-B71-Bm88511.gff3
+
+Corrected version?
+awk 'BEGIN {OFS="\t"; print "##gff-version 3"}
+!/^#/ {
+  strand = ($9 <= $10) ? "+" : "-"
+  start  = ($9 <= $10) ? $9 : $10
+  end    = ($9 <= $10) ? $10 : $9
+
+  match_id = "blast_hit_" NR
+  hsp_id   = "blast_hsp_" NR
+
+  print $1, "BLAST", "match", start, end, $12, strand, ".",
+        "ID="match_id";Name="$2";Target="$2" "$9" "$10";evalue="$11";pident="$3
+
+  print $1, "BLAST", "match_part", start, end, $12, strand, ".",
+        "ID="hsp_id";Parent="match_id";evalue="$11";pident="$3
+}' B71.Bm88511.BLAST > blast-B71-Bm88511.gff3
