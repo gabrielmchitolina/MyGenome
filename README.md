@@ -21,8 +21,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 12. [BUSCO Assessment](#busco-assessment)
 13. [Mitochondrial Contig Identification](#mitochondrial-contig-identification)
 14. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction-analysis) 
-15. [Software Versions](#software-versions)  
-16. [Repository Structure](#repository-structure)   
+
 ---
 
 # Project Overview
@@ -112,16 +111,18 @@ Raw reads showed:
 - Elevated duplication levels  
 - Minor per-base sequence quality warnings  
 
-<details>
-  <summary><strong>Raw Data Images</strong></summary>
+### Raw Data Images
 
-  #### Read 1
+<details>
+  <summary><strong>Read 1</strong></summary>
 
   ![Raw Summary R1](/data/raw_fastqc_summary_1.png)  
   ![Raw Adapter R1](/data/raw_fastqc_adapter_1.png)
+</details>
 
-  #### Read 2
-
+<details>
+ <summary><strong>Read 2</strong></summary>
+ 
   ![Raw Summary R2](/data/raw_fastqc_summary_2.png)  
   ![Raw Adapter R2](/data/raw_fastqc_adapter_2.png)
 
@@ -158,6 +159,7 @@ fastqc Bm88511_1_paired.fastq Bm88511_2_paired.fastq
   ![Trimmed R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
 
 </details>
+
 ---
 
 # Read Trimming (Trimmomatic)
@@ -221,22 +223,29 @@ sbatch spades.sh Bm88511
 SPAdes uses multiple k-mers (21, 33, 55, 77).
 
 ## Final SPAdes Assembly Metrics
+<div align="center">
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Genome Size</td><td>41,509,816 bp</td></tr>
+  <tr><td>Number of Contigs</td><td>6,482</td></tr>
+  <tr><td>N50</td><td>77,767 bp</td></tr>
+</table>
 
-| Metric | Value |
-|--------|--------|
-| Genome Size | 41,509,816 bp |
-| Number of Contigs | 6,482 |
-| N50 | 77,767 bp |
+</div>
 
 ---
 
 # Assembly Comparison and Selection
+
+<div align="center">
 
 | Assembler | Genome Size | Contigs | N50 |
 |-----------|-------------|---------|------|
 | Velvet (Step 10) | 41,616,069 | 9,046 | 14,242 |
 | Velvet (Step 2)  | 41,611,510 | 9,025 | 14,187 |
 | **SPAdes** | **41,509,816** | **6,482** | **77,767** |
+
+</div>
 
 ### Final Selection
 
@@ -297,20 +306,20 @@ Bm88511_final.fasta
 - **Error rate (E):** 3.5%  
 
 ### BUSCO Counts
-- Complete BUSCOs: 1683  
+- **Complete BUSCOs:** 1683  
   - Complete and single-copy: 1679  
   - Complete and duplicated: 4  
-- Fragmented BUSCOs: 3  
-- Missing BUSCOs: 20  
-- BUSCOs with internal stop codons: 59  
+- **Fragmented BUSCOs:** 3  
+- **Missing BUSCOs:** 20  
+- **BUSCOs with internal stop codons:** 59  
 
 ### Assembly Statistics
-- Number of scaffolds: 3,595  
-- Number of contigs: 3,676  
-- Total assembly length: 41,129,872 bp  
-- Percent gaps: 0.016%  
-- Scaffold N50: 75 KB  
-- Contig N50: 69 KB  
+- **Number of scaffolds:** 3,595  
+- **Number of contigs:** 3,676  
+- **Total assembly length:** 41,129,872 bp  
+- **Percent gaps:** 0.016%  
+- **Scaffold N50:** 75 KB  
+- **Contig N50:** 69 KB  
 
 ### Interpretation
 This assembly shows very high completeness (98.6%) with minimal duplication (0.2%) and very few missing genes (1.2%), indicating a high-quality genome assembly.
@@ -479,11 +488,15 @@ Bm88511_final.fasta > Bm88511-augustus.gff3
 
 ### Predicted Gene Counts
 
+<div align="center">
+
 | Tool      | Number of Predicted Genes |
 |-----------|---------------------------|
 | SNAP      | 12,517                    |
 | AUGUSTUS  | 17,487                    |
 | MAKER     | 12,934                    |
+
+</div>
 
 ---
 
@@ -555,24 +568,3 @@ AUGUSTUS uses a generalized HMM with species-specific parameters (magnaporthe_gr
 SNAP outputs simpler exon-based annotations, while AUGUSTUS provides more detailed gene structures including CDS and protein sequences.
 
 ---
-
-# Software Versions
-
-```bash
-velveth --version
-velvetg --version
-spades.py --version
-fastqc --version
-bandage --version
-```
----
-# ✅ Workflow Status
-
-✔ BioSample submitted  
-✔ SRA submitted  
-✔ QC completed  
-✔ Trimming completed  
-✔ Velvet optimization completed  
-✔ SPAdes selected  
-✔ Graph visualization completed  
-✔ Final assembly generated  
