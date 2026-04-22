@@ -41,6 +41,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 **MCC username:** gde267@mcc.uky.edu  
 
 **Objective:** Generate and optimize a high-quality genome assembly
+
 ---
 
 # Data Retrieval
@@ -58,6 +59,7 @@ Source: Dr. Mark Farman's personal computer (user: ngs)
 Destination: Local working directory (~/sequences)
 
 The transferred directory contained the raw paired-end FASTQ files used for downstream analysis.
+
 ---
 
 # NCBI Submissions
