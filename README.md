@@ -660,9 +660,13 @@ The B71 reference genome and converted GFF3 alignment track were loaded into IGV
 
 Chromosome-level inspection was performed to:
 
-identify regions with no MyGenome alignment
-detect structural variation
-assess genome completeness and synteny
+- Identify regions with no MyGenome alignment
+- Detect structural variation
+- Assess genome completeness and synteny
+
+<details> <summary><strong> B71 Gaps in Bm88511</strong></summary>
+![Raw Summary R1](/data/b71-gaps-bm88511.png)
+</details>
 
 ---
 
