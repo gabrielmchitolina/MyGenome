@@ -250,22 +250,24 @@ SPAdes was selected because it:
 
 The SPAdes assembly graph (`assembly_graph.fastg`) was visualized using Bandage.
 
-## Whole Assembly Graph
+<details>
+  <summary>Whole Assembly Graph</summary>
 
-![Whole Assembly Graph](/data/Bm88511_graph_spades.jpg)
+  <img src="data/Bm88511_graph_spades.jpg" width="600">
 
-## Single Contig + Scope = 4 (Node 119964)
-
-![Node 119964 Scope 4](/data/Bm88511_graph_spades_node119964_4.jpg)
+</details>
 
 <details>
-<summary>Graph Interpretation</summary>
+  <summary>Single Contig + Scope = 4 (Node 119964)</summary>
+
+  ![Node 119964 Scope 4](data/Bm88511_graph_spades_node119964_4.jpg)
+
+</details>
+
 
 The whole graph shows a  interconnected cluster.
 
 The zoomed node (scope = 4) reveals local connectivity and confirms contig extension without excessive branching.
-
-</details>
 
 ---
 
@@ -507,23 +509,42 @@ Output:17487
 ```
 
 ### IGV Visualization
-#### SNAP-only Gene Prediction
 
-![SNAP Only](/data/Snap_only.png)
+<details>
+  <summary><strong>SNAP-only Gene Prediction</strong></summary>
 
-#### AUGUSTUS-only Gene Prediction
+  ![SNAP Only](data/Snap_only.png)
 
-![Augustus Only](/data/Augustus_only.png)
+</details>
 
-#### Same Exon/Intron Structure (SNAP vs AUGUSTUS)
+<details>
+  <summary><strong>AUGUSTUS-only Gene Prediction</strong></summary>
 
-![Same Exon/Intron Structure](/data/Snap_Aug_same.png)
+  ![Augustus Only](data/Augustus_only.png)
 
-#### Different Exon/Intron Structure (SNAP vs AUGUSTUS)
+</details>
 
-#### Gene was successfully predicted by SNAP, AUGUSTUS, and MAKER
+<details>
+  <summary><strong>Same Exon/Intron Structure (SNAP vs AUGUSTUS)</strong></summary>
 
-![Same Snap Augustus Maker Structure](/data/Snap_Aug_Maker.png)
+  ![Same Exon/Intron Structure](data/Snap_Aug_same.png)
+
+</details>
+
+<details>
+  <summary><strong>Different Exon/Intron Structure (SNAP vs AUGUSTUS)</strong></summary>
+
+  <!-- Add image here if you have one -->
+  <!-- ![Different Exon/Intron Structure](data/your_image.png) -->
+
+</details>
+
+<details>
+  <summary><strong>Gene predicted by SNAP, AUGUSTUS, and MAKER</strong></summary>
+
+  ![Same Snap Augustus Maker Structure](data/Snap_Aug_Maker.png)
+
+</details>
 
 
 #### Notes
