@@ -132,9 +132,7 @@ Raw reads showed:
 
 </details>
 
-### Full FastQC Reports
-
-Full raw data HTML reports are available to download below:
+### Full FastQC Reports (Raw Data) Download
 
 - [Read 1 HTML Report](data/Bm88511_1_fastqc.html)  
 - [Read 2 HTML Report](data/Bm88511_2_fastqc.html)
@@ -188,6 +186,13 @@ fastqc Bm88511_1_paired.fastq Bm88511_2_paired.fastq
   ![Trimmed R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
 
 </details>
+
+### Full FastQC Reports (Trimmed Data) Download
+
+- [Read 1 Paired](data/Bm88511_1_paired_fastqc.html)  
+- [Read 2 Paired](data/Bm88511_2_paired_fastqc.html)  
+- [Read 1 Unpaired](data/Bm88511_1_unpaired_fastqc.html)  
+- [Read 2 Unpaired](data/Bm88511_2_unpaired_fastqc.html)  
 
 ---
 
