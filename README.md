@@ -22,6 +22,8 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 13. [Mitochondrial Contig Identification](#mitochondrial-contig-identification)
 14. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction-analysis-snap-vs-augustus)
 15. [BLAST Analysis: Bm88511 vs B71 Reference](#blast-analysis-bm88511-vs-b71-reference)
+16. [Predicting Bm88511 Proteins](#predicting-bm88511-protein)
+
 ---
 
 # Project Overview
@@ -707,3 +709,72 @@ Chromosome-level inspection was performed to:
 
 ---
 
+# Predicting Bm88511 Proteins
+
+Protein prediction was performed using MAKER by merging annotation outputs into final protein and transcript FASTA files.
+
+### MAKER protein merge command
+```bash
+singularity exec /share/singularity/images/ccs/MAKER/amd-maker-debian10.sinf fasta_merge \
+-d Bm88511_final.maker.output/Bm88511_final_master_datastore_index.log \
+-o Bm88511
+```
+
+This command consolidates all MAKER annotation evidence into final genome-wide protein predictions.
+
+---
+
+## Protein files generated
+
+The following FASTA files were produced:
+
+### MAKER proteins (final):
+![Maker Proteins](/data/Bm88511.all.maker.proteins.fasta)
+
+### AUGUSTUS proteins:
+![AUGUSTUS proteins](/data/Bm88511.all.maker.augustus.proteins.fasta)
+
+### SNAP proteins:
+![SNAP proteins](/data/Bm88511.all.maker.snap.proteins.fasta)
+
+---
+
+## Counting predicted proteins
+
+Protein counts were obtained by counting FASTA headers (> entries):
+
+### MAKER proteins
+```bash
+grep -c "^>" Bm88511.all.maker.proteins.fasta
+```
+
+**Result:** 12,934 proteins
+
+### AUGUSTUS proteins
+```bash
+grep -c "^>" Bm88511.all.maker.augustus.proteins.fasta
+```
+
+**Result:** 11,054 proteins
+
+### SNAP proteins
+```bash
+grep -c "^>" Bm88511.all.maker.snap.proteins.fasta
+
+**Result:** 12,517 proteins
+```
+
+---
+
+## Comparison of predicted proteins with predicted gene counts (FASTA x GFF analysis)
+
+<div align="center">
+| Tool      | Genes (GFF) | Proteins (FASTA) | Match? |
+|-----------|-------------|------------------|--------|
+| SNAP      | 12,517      | 12,517           | Yes  |
+| AUGUSTUS  | 17,487      | 11,054           | No  |
+| MAKER     | 12,934      | 12,934           | Yes  |
+</div>
+
+**Interpretation**
+SNAP and MAKER protein counts matched their corresponding gene predictions from the GFF files, indicating consistent gene model conversion into predicted proteins. However, AUGUSTUS showed a discrepancy between gene models and predicted proteins, suggesting that some predicted gene models did not translate into final protein-coding sequences during the MAKER processing step
