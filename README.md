@@ -77,8 +77,9 @@ Metadata submitted using the MIGS Eukaryotic: plant-associated package.
 
 Raw paired-end FASTQ files:
 
-Bm88511_1.fq.gz  
-Bm88511_2.fq.gz  
+#### Bm88511_1.fq.gz  
+#### Bm88511_2.fq.gz
+
 ---
 
 # Raw Data Information
