@@ -21,8 +21,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 12. [BUSCO Assessment](#busco-assessment)
 13. [Mitochondrial Contig Identification](#mitochondrial-contig-identification)
 14. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction-analysis-snap-vs-augustus)
-15. [BLAST Analysis: Bm88511 vs B71 Reference](
-
+15. [BLAST Analysis: Bm88511 vs B71 Reference](#blast-analysis-bm88511-vs-b71-reference)
 ---
 
 # Project Overview
@@ -572,7 +571,7 @@ SNAP outputs simpler exon-based annotations, while AUGUSTUS provides more detail
 
 ---
 
-# BLAST Analysis: MyGenome vs B71 Reference
+# BLAST Analysis: Bm88511 vs B71 Reference
 
 ## BLAST Search Setup
 
