@@ -189,10 +189,10 @@ fastqc Bm88511_1_paired.fastq Bm88511_2_paired.fastq
 
 ### Full FastQC Reports (Trimmed Data) Download
 
-- [Read 1 Paired](data/Bm88511_1_paired_fastqc.html)  
-- [Read 2 Paired](data/Bm88511_2_paired_fastqc.html)  
-- [Read 1 Unpaired](data/Bm88511_1_unpaired_fastqc.html)  
-- [Read 2 Unpaired](data/Bm88511_2_unpaired_fastqc.html)  
+- [Trimmed R1 Paired](data/Bm88511_1_paired_fastqc.html)  
+- [Trimmed R2 Paired](data/Bm88511_2_paired_fastqc.html)  
+- [Trimmed R1 Unpaired](data/Bm88511_1_unpaired_fastqc.html)  
+- [Trimmed R2 Unpaired](data/Bm88511_2_unpaired_fastqc.html)  
 
 ---
 
