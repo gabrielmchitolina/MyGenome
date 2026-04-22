@@ -601,7 +601,7 @@ blastn -query MyGenomeID_final.fasta -subject B71.fasta -evalue 1e-100 -outfmt 7
 This orientation ensures that each contig from the Bm88511 assembly is treated as a query, allowing direct identification of contigs that fail to produce any alignments.
 
 ### Output file generated
-[Bm88511 BLAST x B71](data/inverted.B71.Bm88511.BLAST)
+[B71 BLAST x Bm88511](data/inverted.B71.Bm88511.BLAST)
 
 In the BLAST output, contigs with no detectable similarity to the reference are explicitly reported as:
 ```bash
