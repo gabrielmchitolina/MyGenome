@@ -614,7 +614,7 @@ This command counts the number of contigs in the BLAST output that had no alignm
 
 ---
 
-## List of unmatched MyGenome contigs
+## List of unmatched Bm88511 contigs
 
 Contigs in the Bm88511 assembly with no detectable alignment to the B71 reference genome were identified directly from the BLAST output. The BLAST file explicitly labels queries with no alignments as “0 hits found,” allowing direct extraction of unmatched contigs
 
@@ -627,7 +627,7 @@ awk '
 ```
 
 ### Output file generated
-no_hit_contigs.txt
+[Unmatched Bm88511 contigs](data/no_hit_contigs.txt)
 
 This file contains the list of Bm88511 contigs that did not produce any significant alignment to the B71 reference genome. These contigs likely represent isolate-specific sequences, highly diverged regions, or unaligned assembly fragments.
 
