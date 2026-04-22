@@ -20,7 +20,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 11. [Final Assembly Files](#final-assembly-files)
 12. [BUSCO Assessment](#busco-assessment)
 13. [Mitochondrial Contig Identification](#mitochondrial-contig-identification)
-14. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction-analysis) 
+14. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction-analysis-snap-vs-augustus)
 
 ---
 
