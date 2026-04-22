@@ -97,9 +97,9 @@ Raw paired-end FASTQ files:
 
 Quality control was performed on the VM using FastQC.
 
-## 1️⃣ Raw Data
+## Raw Data
 
-## FastQC Commands
+### FastQC Commands
 
 Raw read quality assessment:
 
@@ -121,19 +121,43 @@ Raw reads showed:
 
   ![Raw Summary R1](/data/raw_fastqc_summary_1.png)  
   ![Raw Adapter R1](/data/raw_fastqc_adapter_1.png)
+
 </details>
 
 <details>
- <summary><strong>Read 2</strong></summary>
- 
+  <summary><strong>Read 2</strong></summary>
+
   ![Raw Summary R2](/data/raw_fastqc_summary_2.png)  
   ![Raw Adapter R2](/data/raw_fastqc_adapter_2.png)
 
 </details>
 
+### Full FastQC Reports
+
+- [Read 1 HTML Report](data/Bm88511_1_fastqc.html)  
+- [Read 2 HTML Report](data/Bm88511_2_fastqc.html)
+
 ---
 
-## 2️⃣ Trimmed Data
+# Read Trimming (Trimmomatic)
+
+Reads were trimmed using Trimmomatic v0.38:
+
+```bash
+java -jar trimmomatic-0.38.jar PE -threads 2 -phred33 \
+-trimlog Bm88511_errorlog.txt \
+Bm88511_1.fq.gz Bm88511_2.fq.gz \
+Bm88511_1_paired.fastq Bm88511_1_unpaired.fastq \
+Bm88511_2_paired.fastq Bm88511_2_unpaired.fastq \
+ILLUMINACLIP:adaptors.fa:2:30:10 \
+SLIDINGWINDOW:20:20 MINLEN:125
+```
+
+Only paired reads were used for downstream assembly.
+
+---
+
+## Trimmed Data FastQC
 
 Post-trimming quality assessment:
 
@@ -141,7 +165,7 @@ Post-trimming quality assessment:
 fastqc Bm88511_1_paired.fastq Bm88511_2_paired.fastq
 ```
 
-### Summary After Trimming
+## Summary After Trimming
 
 - Adapter contamination removed  
 - Overall sequence quality improved  
@@ -162,24 +186,6 @@ fastqc Bm88511_1_paired.fastq Bm88511_2_paired.fastq
   ![Trimmed R2 Unpaired](/data/trimmed_fastqc_summary_2_unpaired.png)
 
 </details>
-
----
-
-# Read Trimming (Trimmomatic)
-
-Reads were trimmed using Trimmomatic v0.38:
-
-```bash
-java -jar trimmomatic-0.38.jar PE -threads 2 -phred33 \
--trimlog Bm88511_errorlog.txt \
-Bm88511_1.fq.gz Bm88511_2.fq.gz \
-Bm88511_1_paired.fastq Bm88511_1_unpaired.fastq \
-Bm88511_2_paired.fastq Bm88511_2_unpaired.fastq \
-ILLUMINACLIP:adaptors.fa:2:30:10 \
-SLIDINGWINDOW:20:20 MINLEN:125
-```
-
-Only paired reads were used for downstream assembly.
 
 ---
 
