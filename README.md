@@ -134,6 +134,8 @@ Raw reads showed:
 
 ### Full FastQC Reports
 
+Full raw data HTML reports are available to download below:
+
 - [Read 1 HTML Report](data/Bm88511_1_fastqc.html)  
 - [Read 2 HTML Report](data/Bm88511_2_fastqc.html)
 
