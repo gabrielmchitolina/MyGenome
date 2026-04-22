@@ -766,9 +766,10 @@ grep -c "^>" Bm88511.all.maker.snap.proteins.fasta
 
 ---
 
+## Comparison of predicted proteins with predicted gene counts (FASTA × GFF analysis)
+
 <div align="center">
 
-## Comparison of predicted proteins with predicted gene counts (FASTA × GFF analysis)
 
 | Tool      | Genes (GFF) | Proteins (FASTA) | Match? |
 |-----------|-------------|------------------|--------|
