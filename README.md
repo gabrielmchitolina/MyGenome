@@ -664,8 +664,11 @@ Chromosome-level inspection was performed to:
 - Detect structural variation
 - Assess genome completeness and synteny
 
-<details> <summary><strong> B71 Gaps in Bm88511</strong></summary>
-!(/data/b71-gaps-bm88511.png)
+<details>
+  <summary><strong>B71 Gaps in Bm88511</strong></summary>
+
+  ![B71 gaps in Bm88511](/data/b71-gaps-bm88511.png)
+
 </details>
 
 ---
