@@ -23,6 +23,7 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 14. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction-analysis-snap-vs-augustus)
 15. [BLAST Analysis: Bm88511 vs B71 Reference](#blast-analysis-bm88511-vs-b71-reference)
 16. [Predicting Bm88511 Proteins](#predicting-bm88511-proteins)
+17. [Using RNAseq Data to Confirm Gene Predictions](#using-rnaseq-data-to-confirm-gene-prediction)
 
 ---
 
@@ -794,3 +795,36 @@ grep -c "^>" Bm88511.all.maker.snap.proteins.fasta
 
 **Interpretation**
 SNAP and MAKER protein counts matched their corresponding gene predictions from the GFF files, indicating consistent gene model conversion into predicted proteins. However, AUGUSTUS showed a discrepancy between gene models and predicted proteins, suggesting that some predicted gene models did not translate into final protein-coding sequences during the MAKER processing step
+
+---
+
+# Using RNAseq Data to Confirm Gene Predictions
+
+## *In culture* expression:
+
+Code used:
+```bash
+sbatch hisat2.sh path/to/MyGenomeID_final.fasta FR13_inCulture.fastq.gz
+```
+Output files:
+[Bm88511 Alignment (.bam)](/data/FR13_Bm88511_hits.bam) 
+[Bm88511 Alignment (bam.bai)](/data/FR13_Bm88511_hits.bam.bai)
+[Alignment summary](/data/FR13_Bm88511_summary.txt)
+
+```bash
+sbatch hisat2.sh path/to/MyGenomeID_final.fasta SSID116_inPlanta.fastq.gz
+```
+## *In planta* expression:
+Output files:
+[Bm88511 Alignment (.bam)](/data/SSID116_Bm88511_hits.bam) 
+[Bm88511 Alignment (bam.bai)](/data/SSID116_Bm88511_hits.bam.bai) 
+[Alignment summary](/data/SSID116_Bm88511_summary.txt)
+
+### Genes with predicted introns:
+- Do the RNAseq data support the placement of the predicted introns?
+- Are the introns spliced out 100% of the time?
+
+### Genes that are only expressed in culture
+### Genes that are only expressed in planta
+### Predicted genes with no evidence of expression
+### Are there any expressed genes that were not predicted?
