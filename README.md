@@ -841,6 +841,7 @@ SSID116_Bm88511_hits.bam.bai
   ![Only expressed in culture](/data/rnaseq_only_culture.png)
 
 </details>
+
 ### Genes that are only expressed in planta
 ### Predicted genes with no evidence of expression
 ### Are there any expressed genes that were not predicted?
