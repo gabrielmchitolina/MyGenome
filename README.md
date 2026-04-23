@@ -808,9 +808,9 @@ sbatch hisat2.sh path/to/MyGenomeID_final.fasta FR13_inCulture.fastq.gz
 ```
 Output files:
 
-[Bm88511 Alignment (.bam)](/data/FR13_Bm88511_hits.bam) 
+FR13_Bm88511_hits.bam
 
-[Bm88511 Alignment (bam.bai)](/data/FR13_Bm88511_hits.bam.bai)
+FR13_Bm88511_hits.bam.bai
 
 [Alignment summary](/data/FR13_Bm88511_summary.txt)
 
@@ -826,7 +826,9 @@ sbatch hisat2.sh path/to/MyGenomeID_final.fasta SSID116_inPlanta.fastq.gz
 Output files:
 
 SSID116_Bm88511_hits.bam
+
 SSID116_Bm88511_hits.bam.bai
+
 [Alignment summary](/data/SSID116_Bm88511_summary.txt)
 
 ### Genes with predicted introns:
@@ -834,6 +836,11 @@ SSID116_Bm88511_hits.bam.bai
 - Are the introns spliced out 100% of the time?
 
 ### Genes that are only expressed in culture
+<details>
+ 
+  ![Only expressed in culture](/data/rnaseq_only_culture.png)
+
+</details>
 ### Genes that are only expressed in planta
 ### Predicted genes with no evidence of expression
 ### Are there any expressed genes that were not predicted?
