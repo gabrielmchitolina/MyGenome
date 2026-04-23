@@ -807,17 +807,28 @@ Code used:
 sbatch hisat2.sh path/to/MyGenomeID_final.fasta FR13_inCulture.fastq.gz
 ```
 Output files:
+
 [Bm88511 Alignment (.bam)](/data/FR13_Bm88511_hits.bam) 
+
 [Bm88511 Alignment (bam.bai)](/data/FR13_Bm88511_hits.bam.bai)
+
 [Alignment summary](/data/FR13_Bm88511_summary.txt)
+
+
+## *In planta* expression:
+
+Code used:
 
 ```bash
 sbatch hisat2.sh path/to/MyGenomeID_final.fasta SSID116_inPlanta.fastq.gz
 ```
-## *In planta* expression:
+
 Output files:
+
 [Bm88511 Alignment (.bam)](/data/SSID116_Bm88511_hits.bam) 
+
 [Bm88511 Alignment (bam.bai)](/data/SSID116_Bm88511_hits.bam.bai) 
+
 [Alignment summary](/data/SSID116_Bm88511_summary.txt)
 
 ### Genes with predicted introns:
