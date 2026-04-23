@@ -825,10 +825,8 @@ sbatch hisat2.sh path/to/MyGenomeID_final.fasta SSID116_inPlanta.fastq.gz
 
 Output files:
 
-[Bm88511 Alignment (.bam)](/data/SSID116_Bm88511_hits.bam) 
-
-[Bm88511 Alignment (bam.bai)](/data/SSID116_Bm88511_hits.bam.bai) 
-
+SSID116_Bm88511_hits.bam
+SSID116_Bm88511_hits.bam.bai
 [Alignment summary](/data/SSID116_Bm88511_summary.txt)
 
 ### Genes with predicted introns:
