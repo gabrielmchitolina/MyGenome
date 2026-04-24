@@ -23,8 +23,8 @@ This repository documents the complete genome assembly workflow for isolate **Bm
 14. [Gene Prediction Analysis (SNAP vs AUGUSTUS)](#gene-prediction-analysis-snap-vs-augustus)
 15. [BLAST Analysis: Bm88511 vs B71 Reference](#blast-analysis-bm88511-vs-b71-reference)
 16. [Predicting Bm88511 Proteins](#predicting-bm88511-proteins)
-17. [Using RNAseq Data to Confirm Gene Predictions](#using-rnaseq-data-to-confirm-gene-prediction)
-
+17. [Using RNAseq Data to Confirm Gene Predictions](#using-rnaseq-data-to-confirm-gene-predictions)
+    
 ---
 
 # Project Overview
