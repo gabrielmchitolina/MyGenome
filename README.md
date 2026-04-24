@@ -866,7 +866,7 @@ SSID116_Bm88511_hits.bam.bai
 <details>
   <summary><strong>Genes expressed only in planta</strong></summary>
 
-  ![Genes expressed only in planta](/data/rnaseq_only_planta.png)
+  ![Genes expressed only in planta](/data/)
 
 </details>
 
