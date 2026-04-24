@@ -861,7 +861,7 @@ SSID116_Bm88511_hits.bam.bai
 ---
 
 ### Genes that are only expressed in planta
-- These genes are expressed exclusively during plant infection, indicating potential roles in pathogenicity or host interaction.
+- These genes are more expressed during plant infection, indicating potential roles in pathogenicity or host interaction.
 
 <details>
   <summary><strong>Genes expressed only in planta</strong></summary>
