@@ -831,17 +831,65 @@ SSID116_Bm88511_hits.bam.bai
 
 [Alignment summary](/data/SSID116_Bm88511_summary.txt)
 
-### Genes with predicted introns:
-- Do the RNAseq data support the placement of the predicted introns?
-- Are the introns spliced out 100% of the time?
+### Genes with predicted introns
 
-### Genes that are only expressed in culture
+**- Do the RNA-seq data support the placement of the predicted introns?**  
+- The RNA-seq read alignments support the predicted intron positions. Split reads spanning exon–exon junctions and reduced coverage within intronic regions indicate that most predicted introns are accurately placed.
+
 <details>
- 
-  ![Only expressed in culture](/data/rnaseq_only_culture.png)
+  <summary><strong>RNA-seq support for intron prediction</strong></summary>
+
+  ![RNA-seq support for predicted introns](/data/rnaseq_intron_predict.png)
 
 </details>
 
+**- Are the introns spliced out 100% of the time?**  
+- No, introns are not spliced out 100% of the time. Some RNA-seq reads map to intronic regions, suggesting incomplete splicing, alternative splicing, or the presence of unprocessed transcripts.
+
+---
+
+### Genes that are only expressed in culture
+- These genes show RNA-seq coverage only under culture conditions, suggesting condition-specific expression.
+
+<details>
+  <summary><strong>Genes expressed only in culture</strong></summary>
+
+  ![Genes expressed only in culture](/data/rnaseq_only_culture.png)
+
+</details>
+
+---
+
 ### Genes that are only expressed in planta
+- These genes are expressed exclusively during plant infection, indicating potential roles in pathogenicity or host interaction.
+
+<details>
+  <summary><strong>Genes expressed only in planta</strong></summary>
+
+  ![Genes expressed only in planta](/data/rnaseq_only_planta.png)
+
+</details>
+
+---
+
 ### Predicted genes with no evidence of expression
+- These predicted genes show no RNA-seq support and may represent misannotations, genes expressed under different conditions, or genes with very low expression levels.
+
+<details>
+  <summary><strong>Predicted genes with no RNA-seq expression</strong></summary>
+
+  ![Predicted genes with no RNA-seq expression](/data/rnaseq_gene_noexpres.png)
+
+</details>
+
+---
+
 ### Are there any expressed genes that were not predicted?
+- Yes, some regions show clear RNA-seq expression without corresponding predicted gene models, suggesting incomplete annotation or missed genes during prediction.
+
+<details>
+  <summary><strong>RNA-seq expression without predicted genes</strong></summary>
+
+  ![RNA-seq expression without predicted gene models](/data/rnaseq_expres_nogene.png)
+
+</details>
