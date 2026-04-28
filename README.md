@@ -546,35 +546,35 @@ Output:17487
 <details>
   <summary><strong>SNAP-only Gene Prediction</strong></summary>
 
-    ![SNAP Only](data/Snap_only.png)
+![SNAP Only](data/Snap_only.png)
 
 </details>
 
 <details>
   <summary><strong>AUGUSTUS-only Gene Prediction</strong></summary>
 
-    ![Augustus Only](data/Augustus_only.png)
+![Augustus Only](data/Augustus_only.png)
 
 </details>
 
 <details>
   <summary><strong>Same Exon/Intron Structure (SNAP vs AUGUSTUS)</strong></summary>
 
-    ![Same Exon/Intron Structure](data/Snap_Aug_same.png)
+![Same Exon/Intron Structure](data/Snap_Aug_same.png)
 
 </details>
 
 <details>
   <summary><strong>Different Exon/Intron Structure (SNAP vs AUGUSTUS)</strong></summary>
 
-    ![Different Exon/Intron Structure](data/diff_exon_intron.png)
+![Different Exon/Intron Structure](data/diff_exon_intron.png)
 
 </details>
 
 <details>
   <summary><strong>Gene predicted by SNAP, AUGUSTUS, and MAKER</strong></summary>
 
-    ![Same Snap Augustus Maker Structure](data/Snap_Aug_Maker.png)
+![Same Snap Augustus Maker Structure](data/Snap_Aug_Maker.png)
 
 </details>
 
