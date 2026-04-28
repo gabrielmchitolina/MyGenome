@@ -362,7 +362,7 @@ Run blastn using Singularity on MCC with output format 6 and selected columns:
 ```bash
 singularity run --app blast2120 /share/singularity/images/ccs/conda/amd-conda1-centos8.sinf \
 blastn -query MoMitochondrion.fasta \
--subject MyGenome_final.fasta \
+-subject Bm88511_final.fasta \
 -evalue 1e-50 \
 -max_target_seqs 20000 \
 -outfmt '6 qseqid sseqid slen length qstart qend sstart send btop' \
@@ -596,7 +596,7 @@ A nucleotide BLAST search was performed to compare the Pyricularia oryzae Bm8851
 The following command was used:
 
 ```bash
-blastn -query B71.fasta -subject MyGenomeID_final.fasta -evalue 1e-100 -outfmt 7 > B71.MyGenomeID.BLAST
+blastn -query B71.fasta -subject Bm88511_final.fasta -evalue 1e-100 -outfmt 7 > B71.Bm88511.BLAST
 ```
 
 ### Output file generated
@@ -611,7 +611,7 @@ To identify contigs in the Bm88511 genome assembly that do not match the B71 ref
 
 ### BLAST search (inverted setup)
 ```bash
-blastn -query MyGenomeID_final.fasta -subject B71.fasta -evalue 1e-100 -outfmt 7 > inverted.B71.Bm88511.BLAST
+blastn -query Bm88511_final.fasta -subject B71.fasta -evalue 1e-100 -outfmt 7 > inverted.B71.Bm88511.BLAST
 ```
 
 This orientation ensures that each contig from the Bm88511 assembly is treated as a query, allowing direct identification of contigs that fail to produce any alignments.
@@ -805,7 +805,7 @@ SNAP and MAKER protein counts matched their corresponding gene predictions from 
 
 Code used:
 ```bash
-sbatch hisat2.sh path/to/MyGenomeID_final.fasta FR13_inCulture.fastq.gz
+sbatch hisat2.sh path/to/Bm88511_final.fasta FR13_inCulture.fastq.gz
 ```
 Output files:
 
@@ -821,7 +821,7 @@ FR13_Bm88511_hits.bam.bai
 Code used:
 
 ```bash
-sbatch hisat2.sh path/to/MyGenomeID_final.fasta SSID116_inPlanta.fastq.gz
+sbatch hisat2.sh path/to/Bm88511_final.fasta SSID116_inPlanta.fastq.gz
 ```
 
 Output files:
