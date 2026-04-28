@@ -607,7 +607,7 @@ This search identifies high-confidence alignments between the reference genome (
 ---
 
 ## Contigs with no matches to B71
-To identify contigs in the Bm88511 genome assembly that do not match the B71 reference genome, a BLASTN search was performed using an inverted query/subject setup. In this configuration, Bm88511 (MyGenome) is used as the query and B71 is used as the subject. This allows each contig in the assembly to be evaluated independently against the reference genome.
+To identify contigs in the Bm88511 genome assembly that do not match the B71 reference genome, a BLAST was performed using an inverted query/subject setup. In this configuration, Bm88511 (MyGenome) is used as the query and B71 is used as the subject. This allows each contig in the assembly to be evaluated independently against the reference genome.
 
 ### BLAST search (inverted setup)
 ```bash
@@ -633,6 +633,7 @@ grep -c "# 0 hits found" inverted.B71.Bm88511.BLAST
 
 This command counts the number of contigs in the BLAST output that had no alignments to the B71 reference genome. Each “0 hits found” entry represents one contig unique to the Bm88511 assembly or lacking detectable homology in B71.
 
+**Total Number of No-hits Contigs:** 775
 ---
 
 ## List of unmatched Bm88511 contigs
